@@ -3,7 +3,10 @@ import DetailBannerItem from "./detail-banner-item";
 import React, { createRef, useEffect, useState } from "react";
 import $ from "jquery";
 import { motion, AnimatePresence } from "framer-motion";
-import { AvailableOption, ColorVariantDetails } from "../../api-service/api-models";
+import {
+  AvailableOption,
+  ColorVariantDetails,
+} from "../../api-service/api-models";
 import ColorBannerItem from "./color-banner-item";
 
 const ColorSlider = (props: {
@@ -63,7 +66,6 @@ const ColorSlider = (props: {
                 }}
               >
                 <ColorBannerItem
-                  fadeOut={props.fadeOut}
                   onClick={props.onItemClick}
                   key={"banner item" + index}
                   data={{

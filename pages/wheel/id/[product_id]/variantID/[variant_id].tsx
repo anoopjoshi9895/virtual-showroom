@@ -1,4 +1,4 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import React from "react";
 import {
   ConfigDetails,
@@ -6,10 +6,9 @@ import {
 import {
   getConfigDetailsByColorCode,
 } from "../../../../../api-service/api-service";
-import DetailHeader from "../../../../../components/detail/detail-header";
-import SelectOption from "../../../../../components/detail/select-color";
 import Footer from "../../../../../components/footer/footer";
-import { getConfigStaticPaths } from "../../../../../components/utils";
+import CommonHeader from "../../../../../components/header/common-header";
+import DropdownListItems from "../../../../../components/header/dropdown-list-items";
 
 interface SSRHomeData {
   configDetails: ConfigDetails;
@@ -19,14 +18,15 @@ const Wheel: NextPage<SSRHomeData> = ({ configDetails }) => {
   return (
     <div className="outer-main">
       <>
-        <DetailHeader onClick={(data: any, index: any) => { }} />
-        <SelectOption
-          type="Select Wheel"
-          onClick={(data: any, index: any) => {
-
-          }}
-          options={configDetails?.availableWheels ?? []}
-        />
+        <CommonHeader
+          showDropdownByDefault={true}>
+          <DropdownListItems
+            header="Select Wheel"
+            onSelect={(data: any, index: any) => {
+            }}
+            options={configDetails?.availableWheels ?? []}
+          ></DropdownListItems>
+        </CommonHeader>
         <Footer />
       </>
     </div>

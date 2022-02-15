@@ -2,8 +2,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { ColorVariantDetails } from "../../api-service/api-models";
 import ColorSlider from "../detail/color-slider";
-import DetailHeader from "../detail/detail-header";
-import SelectOption from "../detail/select-color";
 import Footer from "../footer/footer";
 import CommonHeader from "../header/common-header";
 import DropdownListItems from "../header/dropdown-list-items";
@@ -23,33 +21,20 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
 
   return (
     <>
-      <DetailHeader
-        onClick={(data: any, index: any) => {
-          setCurrentSlide(index);
-          setSelectedColor(colors[index]);
-        }}
-      />
-      <CommonHeader extraButtons={[{ title: "Back to colors", link: "/" }]}>
+      <CommonHeader
+        showDropdownByDefault={true}
+        extraButtons={[{ title: "Back to colors", link: "/" }]}>
         <DropdownListItems
           header="Select Color"
-          onSelect={() => { }}
-          options={[
-            { name: "red", thumbnail: "as" },
-            { name: "green", thumbnail: "asd" },
-          ]}
+          onSelect={(data: any, index: any) => {
+            setCurrentSlide(index);
+            setSelectedColor(data);
+          }}
+          options={colors ?? []}
         ></DropdownListItems>
       </CommonHeader>
       {colors?.length > 0 && (
         <>
-          <SelectOption
-            type="Select Color"
-            onClick={(data: any, index: any) => {
-              setCurrentSlide(index);
-              setSelectedColor(data);
-            }}
-            options={colors ?? []}
-          />
-
           <ColorSlider
             gotoSlide={currentSlide}
             fadeOut={fadeOut}

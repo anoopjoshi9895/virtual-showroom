@@ -1,4 +1,4 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import React from "react";
 import {
   ConfigDetails,
@@ -6,10 +6,10 @@ import {
 import {
   getConfigDetailsByColorCode,
 } from "../../../../../api-service/api-service";
-import DetailHeader from "../../../../../components/detail/detail-header";
-import SelectOption from "../../../../../components/detail/select-color";
 import Footer from "../../../../../components/footer/footer";
-import { getConfigStaticPaths } from "../../../../../components/utils";
+import CommonHeader from "../../../../../components/header/common-header";
+import DropdownListItems from "../../../../../components/header/dropdown-list-items";
+import Image from 'next/image'
 
 interface SSRHomeData {
   configDetails: ConfigDetails;
@@ -19,14 +19,23 @@ const Upholstery: NextPage<SSRHomeData> = ({ configDetails }) => {
   return (
     <div className="outer-main">
       <>
-        <DetailHeader onClick={(data: any, index: any) => { }} />
-        <SelectOption
-          type="Select Upholstery"
-          onClick={(data: any, index: any) => {
-
-          }}
-          options={configDetails?.availableUpholstery ?? []}
-        />
+        <CommonHeader
+          showDropdownByDefault={true}>
+          <DropdownListItems
+            header="Select Upholstery"
+            onSelect={(data: any, index: any) => {
+            }}
+            options={configDetails?.availableUpholstery ?? []}
+          ></DropdownListItems>
+           
+        </CommonHeader>
+        <Image
+              //loader={myLoader}
+              src="https://sreena.oorjit.net/virtual-showroom/images/image 2.png"
+              alt="Picture of the author"
+              width={1440}
+              height={770}
+              className="fullwidthimage"/>
         <Footer />
       </>
     </div>

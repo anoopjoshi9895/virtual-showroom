@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import { Layout } from "../components/layout/layout";
 import { CarConfigurationProvider } from "../context/configureContext";
 import "../styles/sass/common.scss";
 import "../styles/sass/showroom.scss";
@@ -6,7 +7,9 @@ import "../styles/sass/showroom.scss";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <CarConfigurationProvider>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </CarConfigurationProvider>
   );
 }

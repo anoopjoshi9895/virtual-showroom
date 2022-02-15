@@ -1,30 +1,24 @@
-import Link from "next/link";
-import { useState, memo, useEffect } from "react";
-import styles from "./Layout.module.css";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { FullPageLoader } from "../loader";
 
-export const TransitionLayout = ({ children }: any) => {
-  const [displayChildren, setDisplayChildren] = useState(children);
-  const [transitionStage, setTransitionStage] = useState("fadeOut");
+export const Layout = ({ children }: any) => {
+  const [routeChangeOccuring, setRouteChangeOccuring] = useState(false);
+
+  let router = useRouter();
+
   useEffect(() => {
-    setTransitionStage("fadeIn");
+    router.events.on("routeChangeStart", () => setRouteChangeOccuring(true));
+    router.events.on("routeChangeComplete", () =>
+      setRouteChangeOccuring(false)
+    );
+    router.events.on("routeChangeError", () => setRouteChangeOccuring(false));
   }, []);
-
-  useEffect(() => {
-    if (children !== displayChildren) setTransitionStage("fadeOut");
-  }, [children, setDisplayChildren, displayChildren]);
-
   return (
     <div>
-      <div
-        onTransitionEnd={() => {
-          if (transitionStage === "fadeOut") {
-            setDisplayChildren(children);
-            setTransitionStage("fadeIn");
-          }
-        }}
-        className={`${styles.content} ${styles[transitionStage]}`}
-      >
-        {displayChildren}
+      <div>
+        {children}
+        {routeChangeOccuring && <FullPageLoader></FullPageLoader>}
       </div>
     </div>
   );

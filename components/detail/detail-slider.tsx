@@ -17,6 +17,14 @@ const DetailSlider = (props: {
   const arr = props.vehicles ?? [];
   const initialSlide = props.initialSlide;
   const sliderRef = React.useRef<any>(null);
+  const [haveMultipleImage, setHaveMultipleImage] = useState(true);
+  // useEffect(() => {
+  //   if (props.vehicles.length > 1) {
+  //     setHaveMultipleImage(true);
+  //   } else {
+  //     setHaveMultipleImage(false);
+  //   }
+  // }, [props.vehicles]);
   const [key, setKey] = useState(false);
   useEffect(() => {
     if (props.gotoSlide != null) {
@@ -33,14 +41,13 @@ const DetailSlider = (props: {
       }
     }, 100);
   }, []);
-
   return (
     <div className="align-items-center detailpage-view d-flex zoomOutview">
       <Slider
-        key={"detail-slider-key" + key}
+        key={"detail-slider-key" + key + haveMultipleImage}
         ref={sliderRef}
         initialSlide={initialSlide}
-        centerMode={true}
+        centerMode={haveMultipleImage}
         centerPadding={"30%"}
         infinite={false}
         slidesToShow={1}

@@ -1,5 +1,4 @@
 import HomeIcon from "../header/home-icon";
-import SelectOption from "./select-color";
 import HeaderButton from "../header/header-button";
 
 const DetailHeader = (props: {

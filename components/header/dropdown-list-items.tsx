@@ -2,23 +2,26 @@ import DropdownItem from "./dropdown-item";
 
 const DropdownListItems = (props: {
   header: string;
-  options: IDropdownOption[];
-  onSelect: (item: IDropdownOption, index: number) => void;
+  options: any[];
+  onSelect: (item: any, index: number) => void;
 }) => {
+  const options = props?.options ?? [];
+  const header = props?.header
+
   return (
     <>
       <div className="option-outer w-100">
         <div className="container d-flex justify-content-end">
-          <div className="option-color p-3 mt-4">
-            <h6 className="font-small text-white">Select Color</h6>
+          <div className="option-color p-3 mt-4 mr-3">
+            <h6 className="font-small text-white">{header}</h6>
             <ul className="list-unstyled font-small color-listing mt-3">
-              {props.options?.map((item, index) => {
+              {options?.map((item: any, index) => {
                 return (
                   <DropdownItem
-                    onSelect={(data) => {
-                      props.onSelect(item, index);
+                    onSelect={(data: any) => {
+                      props?.onSelect(data, index);
                     }}
-                    key={"dropdown-item-" + index + item.name}
+                    key={"color-item-" + index}
                     data={item}
                   />
                 );
