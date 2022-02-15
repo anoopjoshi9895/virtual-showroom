@@ -1,0 +1,243 @@
+.pager {
+    padding: 10px 0;
+    ul {
+        display: inline-block;
+        width: auto!important;
+        padding: 0;
+        li {
+            display: inline-block;
+            padding-right: 5px; // margin: 0 0 0 13px;
+            &:last-child {
+                padding-right: 0;
+            }
+            a {
+                border: 1px solid #dedede;
+                color: $gray-800;
+                display: inline-block;
+                margin-right: 5px;
+                text-align: center;
+                border-radius: 3px;
+                -moz-border-radius: 3px;
+                padding: 3px 8px;
+                font-size: 15px;
+                line-height: 19px;
+                &.active {
+                    // border: 1px solid $primary;
+                    background-color: $secondary !important;
+                    color: $white !important;
+                }
+            }
+        }
+    }
+    span {
+        font-size: rem(13);
+        color: $gray-500;
+    }
+}
+
+.pager {
+    .btn {
+        font-size: 0px;
+
+        &:before {
+            font-family: 'icomoon' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    }
+}
+
+.pagination {
+    ul {
+        display: inline-block;
+        li {
+            border: 1px solid $gray-400;
+            color: $gray-600;
+            display: inline-block;
+            margin-right: 5px;
+            background: $white;
+            text-align: center;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            color: $gray-600;
+            min-width: 28px;
+            line-height: 24px;
+            vertical-align: middle;
+            height: 26px;
+
+        }
+        li {
+            position: relative;
+            &.backward,
+            &.forward,
+            &.next,
+            &.previous {
+                font-size: 0;
+                &:before,
+                a:before {
+                    font-family: 'icomoon' !important;
+                    font-size: 9px;
+                    color: $gray-500;
+                    margin-top: 1px;
+                    display: inline-block;
+                }
+                a {
+                    position: absolute;
+                    top: -1px;
+                    left: -1px;
+                    bottom: -1px;
+                    right: -1px;
+                    border: 1px solid lighten($dark, 87%);
+                    background: $white;
+                    width: auto;
+                    height: auto;
+                    &:before {
+                        color: lighten($dark, 20%);
+
+                    }
+                }
+            }
+            &.backward:before,
+            &.backward a:before {
+                content: "\e93e";
+            }
+            &.previous:before,
+            &.previous a:before {
+                content: "\e91a";
+            }
+            &.next:before,
+            &.next a:before {
+                content: "\e919";
+            }
+            &.forward:before,
+            &.forward a:before {
+                content: "\e93f";
+            }
+            a {
+                width: 100%;
+                height: 100%;
+                display: block;
+                padding: 0 5px;
+            }
+            &.active {
+                background: $primary;
+                color: $white;
+            }
+            &.hide {
+                display: none;
+            }
+        }
+    }
+    > span {
+        float: left;
+        padding: 4px 15px 4px 0;
+    }
+}
+
+#smart-paginator,
+#smart-paginator1,
+#smart-paginator2 {
+    text-align: right;
+    span {
+        display: none;
+    }
+    ul {
+        display: inline-block;
+        li {
+            a {
+                padding: 3px 10px 3px 10px;
+                margin: 0 0 10px 0;
+
+                &:hover {
+                    background-color: $primary;
+                    border-radius: 3px;
+                    color: $white;
+                }
+            }
+        }
+    }
+    .first {
+        padding: 0;
+    }
+    .last {
+        padding: 0;
+    }
+    .next {
+        float: right;
+        padding: 0;
+        background: transparent;
+        margin-left: 20px;
+        font-size: 15px;
+        &:after {
+            font-family: "icomoon" !important;
+            content: "\e919";
+            color: #7d8998;
+            font-size: 10px;
+            font-weight: $font-weight-normal;
+            margin-left: 5px;
+
+        }
+
+
+    }
+    .prev {
+        padding: 0;
+        background: transparent;
+        font-size: 15px;
+        vertical-align: top;
+        margin-right: 20px;
+        &:before {
+            font-family: "icomoon" !important;
+            content: "\e91a";
+            color: #7d8998;
+            font-size: 10px;
+            font-weight: $font-weight-normal;
+            margin-right: 5px;
+
+        }
+    }
+
+}
+
+.rtl {
+    .pagination ul li.backward,
+    .pagination ul li.forward,
+    .pagination ul li.next,
+    .pagination ul li.previous {
+        transform: rotate(180deg);
+    }
+    .pagination > span {
+        float: right;
+        padding: 4px 0 4px 15px;
+    }
+    #smart-paginator,
+    #smart-paginator1,
+    #smart-paginator2 {
+        text-align: left;
+        .next {
+            float: none;
+            position: relative;
+            &:after {
+                position: absolute;
+                transform: rotate(180deg);
+                margin: -6px 5px;
+                left: -22px;
+            }
+        }
+        .prev {
+            float: none;
+            position: relative;
+            &:before {
+                position: absolute;
+                transform: rotate(180deg);
+                margin: 5px -16px;
+            }
+        }
+    }
+}

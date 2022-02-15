@@ -1,0 +1,124 @@
+@import "../custom-variables/variables";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+/* checkbox radio button */
+
+input[type="radio"],
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Radio Button */
+
+input[type="radio"] + label {
+  padding-left: 30px;
+  position: relative;
+  cursor: pointer;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+  }
+  &:before {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #aeaeae;
+    border-radius: 50%;
+    background: $white;
+    left: 0;
+    top: 2px;
+    display: block;
+  }
+  &:after {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+    background-color: $primary;
+    position: absolute;
+    left: 5px;
+    top: 7px;
+    opacity: 0;
+    transition: all ease 0.5s;
+  }
+}
+
+input[type="radio"]:checked + label {
+  &:before {
+    border-color: $primary;
+  }
+  &:after {
+    opacity: 1;
+  }
+}
+
+/* Checkbox */
+
+input[type="checkbox"] + label {
+  padding-left: 30px;
+  position: relative;
+  cursor: pointer;
+  color: #010a14;
+  font-weight: 700;
+  font-size: 13px;
+  margin: 7px 0;
+  @include media-breakpoint-down(md) {
+    margin: 6px 0;
+  }
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+  }
+  &:before {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #d6d6d6;
+    background: $white;
+    left: 0;
+    top: 0;
+  }
+  &:after {
+    width: 5px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    opacity: 0;
+    border-bottom: $white 2px solid;
+    border-right: $white 2px solid;
+    transition: all ease 0.5s;
+    transform: rotate(40deg);
+  }
+}
+
+input[type="checkbox"]:checked + label {
+  &:after {
+    opacity: 1;
+  }
+  &:before {
+    border: 1px solid darken(desaturate($primary, 4.72), 14.9);
+    background: $primary;
+  }
+}
+
+html[dir="rtl"] {
+  [type="checkbox"]:not(:checked) + label,
+  [type="checkbox"]:checked + label {
+    padding-left: 0;
+    padding-right: 30px;
+  }
+  [type="checkbox"]:not(:checked) + label:before,
+  [type="checkbox"]:checked + label:before {
+    left: inherit;
+    right: 0;
+  }
+  [type="checkbox"]:not(:checked) + label:after,
+  [type="checkbox"]:checked + label:after {
+    left: inherit;
+    right: 6px;
+  }
+}
