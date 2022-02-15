@@ -24,24 +24,24 @@ const ShowroomDetails: NextPage<SSRHomeData> = ({ carList }) => {
   );
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const carList = await getAllSeries();
-//   const paths = carList?.map((data) => {
-//     return {
-//       params: {
-//         series: data.seriesKey,
-//         model: data.modelCode,
-//       },
-//     };
-//   });
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  const carList = await getAllSeries();
+  const paths = carList?.map((data) => {
+    return {
+      params: {
+        series: data.seriesKey,
+        model: data.modelCode,
+      },
+    };
+  });
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-export const getServerSideProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  // export const getServerSideProps: GetStaticProps = async ({ params }) => {
   const carList = await getDetailsBySeries(
     params?.series?.toString(),
     params?.model?.toString()

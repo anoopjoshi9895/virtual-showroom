@@ -26,10 +26,19 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
   };
 
   const [directionNumber, setDirectionNumber] = useState(0);
-
+  const allImageArray = vehicles?.map((p) => p.productImages);
+  let allImages: any[] = [];
+  allImageArray?.forEach((p) => {
+    allImages = allImages.concat(p);
+  });
   return (
     <>
       <CommonHeader></CommonHeader>
+      <div style={{ height: 0 }}>
+        {allImages?.map((p) => {
+          return <img key={p} height={0} width={0} src={p}></img>;
+        })}
+      </div>
       {vehicles?.length > 0 && (
         <DetailSlider
           direction={directionNumber}

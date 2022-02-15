@@ -27,12 +27,12 @@ const ThreeSixty: NextPage<SSRHomeData> = ({ selectedColor }) => {
   );
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return getConfigStaticPaths();
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  return getConfigStaticPaths();
+};
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-export const getServerSideProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  //export const getServerSideProps: GetStaticProps = async ({ params }) => {
   const configDetails = await getConfigDetailsByColorCode(
     params?.product_id?.toString(),
     params?.variant_id?.toString()
