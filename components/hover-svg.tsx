@@ -1,13 +1,13 @@
 const HoverSVG = (props: { link: string; name: string; onClick: any }) => {
   return (
-    <span className="hover">
+    <span className="hover" onClick={() => {
+      props.onClick();
+    }}>
       <div className="series-name">
         <span className="d-block">{props.name}</span>
       </div>
       <span
-        onClick={() => {
-          props.onClick();
-        }}
+        
         className="detailview"
       >
         <svg

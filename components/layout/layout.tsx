@@ -18,7 +18,7 @@ export const Layout = ({ children }: any) => {
     <div>
       <div>
         {children}
-        {routeChangeOccuring && <FullPageLoader></FullPageLoader>}
+        {<FullPageLoader></FullPageLoader>}
       </div>
     </div>
   );

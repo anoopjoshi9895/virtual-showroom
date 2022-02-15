@@ -12,7 +12,7 @@ const DropdownListItems = (props: {
     <>
       <div className="option-outer w-100">
         <div className="container d-flex justify-content-end">
-          <div className="option-color p-3 mt-4 mr-3">
+          <div className="option-color p-3 mt-4">
             <h6 className="font-small text-white">{header}</h6>
             <ul className="list-unstyled font-small color-listing mt-3">
               {options?.map((item: any, index) => {

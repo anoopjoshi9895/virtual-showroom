@@ -1,11 +1,10 @@
-import type { GetStaticProps, NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
-import {
-  AvailableOption,
-} from "../../../../../api-service/api-models";
+import { AvailableOption } from "../../../../../api-service/api-models";
 import { getConfigDetailsByColorCode } from "../../../../../api-service/api-service";
 import CommonHeader from "../../../../../components/header/common-header";
+import { getConfigStaticPaths } from "../../../../../components/utils";
 const ThreeSixtyView: any = dynamic(
   import("../../../../../components/detail/threesixtyview"),
   { ssr: false }
@@ -25,12 +24,12 @@ const ThreeSixty: NextPage<SSRHomeData> = ({ selectedColor }) => {
   );
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return getConfigStaticPaths();
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  return getConfigStaticPaths();
+};
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-export const getServerSideProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  //export const getServerSideProps: GetStaticProps = async ({ params }) => {
   const configDetails = await getConfigDetailsByColorCode(
     params?.product_id?.toString(),
     params?.variant_id?.toString()
@@ -48,8 +47,8 @@ export const getServerSideProps: GetStaticProps = async ({ params }) => {
     return {
       props: {
         selectedColor,
-        revalidate: 10,
       },
+      revalidate: 10,
     };
   }
 };

@@ -12,14 +12,13 @@ const FullPageLoader: React.FunctionComponent<LoaderProps> = (
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: "black",
-        opacity: 0.3,
+        backgroundColor: "#09090A",
       }}
       className="Loader FullLoader"
     >
-      <div className="FullLoader__icon">
-        <img src="/assets/svg/honda.svg" alt=".."></img>
-      </div>
+      {/* <div className="FullLoader__icon"> */}
+      <img src="/images/loader.gif" alt=".."></img>
+      {/* </div> */}
       {props.text && <div className="FullLoader__text">{props.text}</div>}
     </div>
   );
