@@ -1,4 +1,6 @@
+import { AvailableOption, ICarSeries } from "../api-service/api-models";
 import { getAllSeries, getDetailsBySeries } from "../api-service/api-service";
+import { ISliderData } from "./detail/common-slider";
 
 export const getConfigStaticPaths = async () => {
   const carList = await getAllSeries();
@@ -46,6 +48,31 @@ export const getConfigStaticPaths = async () => {
     paths: paths,
     fallback: false,
   };
-
 };
 
+export const getSliderData = (items: AvailableOption[]) => {
+  const sliderDataList: ISliderData[] = items?.map((data) => {
+    return {
+      id: data.variantID,
+      name: data.variantName,
+      image: data.productImage ?? "",
+      link: "details/",
+    };
+  });
+  return sliderDataList ?? [];
+};
+
+export const getVehiclesSliderData = (
+  items: ICarSeries[],
+  direction: number
+) => {
+  const sliderDataList: ISliderData[] = items?.map((data) => {
+    return {
+      id: data.productID,
+      name: data.name,
+      image: data?.productImages?.[direction] ?? "",
+      link: "details/",
+    };
+  });
+  return sliderDataList ?? [];
+};

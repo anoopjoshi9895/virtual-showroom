@@ -1,23 +1,22 @@
-import { AvailableOption } from "../../api-service/api-models";
+import { IFooterData } from "./footer";
 
-const FooterItem = (props: {
-  data: any;
-  onClick: (data: any) => void
-}) => {
+const FooterItem = (props: { data: IFooterData }) => {
   const data = props?.data;
   return (
-    <div onClick={() => {
-      props.onClick(data)
-    }} className="pr-4">
+    <div className="pr-4">
       <span className="font-xsmall text-uppercase text-white ">
-        {data}
+        {data.title}
       </span>
-      <div
-        className="color mt-2 mx-auto"
-        style={{
-          backgroundImage: "url(/images/color-blue.jpeg)",
-        }}
-      ></div>
+      <div className="color mt-2 mx-auto">
+        <img
+          style={{
+            maxHeight: "100%",
+            maxWidth: "100%",
+            borderRadius: "50px",
+          }}
+          src={data.image}
+        ></img>
+      </div>
     </div>
   );
 };

@@ -10,3 +10,6 @@ declare module "@georgedrpg/pannellum-react-next" {
   export const Pannellum: any;
   export default Pannellum;
 }
+declare module "react-sweet-progress" {
+  export const Progress: any;
+}

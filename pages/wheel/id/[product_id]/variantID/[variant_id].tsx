@@ -1,33 +1,29 @@
 import type { GetStaticProps, NextPage } from "next";
-import React from "react";
-import {
-  ConfigDetails,
-} from "../../../../../api-service/api-models";
-import {
-  getConfigDetailsByColorCode,
-} from "../../../../../api-service/api-service";
+import React, { useState } from "react";
+import { ConfigDetails } from "../../../../../api-service/api-models";
+import { getConfigDetailsByColorCode } from "../../../../../api-service/api-service";
+import ThreeSixtyView from "../../../../../components/detail/threesixtyview";
 import Footer from "../../../../../components/footer/footer";
 import CommonHeader from "../../../../../components/header/common-header";
 import DropdownListItems from "../../../../../components/header/dropdown-list-items";
+import WheelWrapper from "../../../../../components/wrapers/wheel-wrapper";
 
 interface SSRHomeData {
   configDetails: ConfigDetails;
 }
 const Wheel: NextPage<SSRHomeData> = ({ configDetails }) => {
+  const wheel = configDetails?.availableWheels ?? [];
+  const [selectedWheel, setSelectedWheel] = useState(wheel[0]);
 
   return (
     <div className="outer-main">
       <>
-        <CommonHeader
-          showDropdownByDefault={true}>
-          <DropdownListItems
-            header="Select Wheel"
-            onSelect={(data: any, index: any) => {
-            }}
-            options={configDetails?.availableWheels ?? []}
-          ></DropdownListItems>
-        </CommonHeader>
-        <Footer />
+        {/* <WheelWrapper
+          data={configDetails}
+          selectedItem={selectedWheel}
+          onSelect={(item: any, index: number) => {
+            setSelectedWheel(wheel[index])
+          }} /> */}
       </>
     </div>
   );

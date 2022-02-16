@@ -2,9 +2,11 @@ import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { ICarSeries } from "../../api-service/api-models";
 import { useOnLoadImages } from "../../hooks/use-onload-images";
-import DetailSlider from "../detail/detail-slider";
-import Zoom from "../detail/zoom";
+import CommonSlider from "../detail/common-slider";
+import RotaionWheel from "../detail/rotation-wheel";
 import CommonHeader from "../header/common-header";
+import PercentageLoader from "../loader/percentage-loader";
+import { getVehiclesSliderData } from "../utils";
 
 const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
   const router = useRouter();
@@ -13,17 +15,12 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
 
   const initialSlide = vehicles?.length > 1 ? 1 : 0;
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
-  const [fadeOut, setFadeOut] = useState(false);
   const onRotationClick = (direction: number) => {
     setDirectionNumber(direction);
   };
 
   const onChangeSlide = (currentSlide: number) => {
     setCurrentSlide(currentSlide);
-  };
-
-  const onFadeOut = () => {
-    setFadeOut(true);
   };
 
   const [directionNumber, setDirectionNumber] = useState(0);
@@ -50,18 +47,19 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
       )}
       <div ref={wrapperRef}>
         {vehicles?.length > 0 && (
-          <DetailSlider
-            direction={directionNumber}
-            fadeOut={fadeOut}
+          <CommonSlider
             onItemClick={(item: any) => {
-              router.push("/color/" + item.productID?.toString());
+              router.push("/color/" + item.id?.toString());
             }}
             initialSlide={initialSlide}
-            vehicles={vehicles}
+            vehicles={getVehiclesSliderData(vehicles, directionNumber)}
             onChangeSlide={onChangeSlide}
           />
         )}
       </div>
+      {!imagesLoaded && (
+        <PercentageLoader percentage={percentage + 30}></PercentageLoader>
+      )}
       <div className="bottom-0 left-0 position-absolute px-4 py-2 w-100">
         <div className="d-flex flex-wrap justify-content-between">
           {vehicles?.length > 0 && (
@@ -71,7 +69,7 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
               <span className="total">{vehicles?.length ?? 0}</span>
             </span>
           )}
-          <Zoom onFadeOut={onFadeOut} onClick={onRotationClick} />
+          <RotaionWheel onFadeOut={() => {}} onClick={onRotationClick} />
         </div>
       </div>
     </>

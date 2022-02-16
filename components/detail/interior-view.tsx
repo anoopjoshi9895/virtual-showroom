@@ -8,9 +8,9 @@ const InteriorView = () => {
   return (
     <>
       <div className="interior-view">
-        <CommonHeader />
+        {/* <CommonHeader /> */}
         <Panorama></Panorama>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

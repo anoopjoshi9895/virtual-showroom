@@ -17,7 +17,7 @@ export interface AvailableOption {
   isDefault: string;
   selected: string;
   thumbNail: string;
-  productImage: string;
+  productImage?: string;
   productImages?: string[];
 }
 

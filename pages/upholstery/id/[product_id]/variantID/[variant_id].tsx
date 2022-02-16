@@ -1,42 +1,33 @@
 import type { GetStaticProps, NextPage } from "next";
-import React from "react";
-import {
-  ConfigDetails,
-} from "../../../../../api-service/api-models";
-import {
-  getConfigDetailsByColorCode,
-} from "../../../../../api-service/api-service";
+import React, { useState } from "react";
+import { ConfigDetails } from "../../../../../api-service/api-models";
+import { getConfigDetailsByColorCode } from "../../../../../api-service/api-service";
 import Footer from "../../../../../components/footer/footer";
 import CommonHeader from "../../../../../components/header/common-header";
 import DropdownListItems from "../../../../../components/header/dropdown-list-items";
-import Image from 'next/image'
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import UpholsteryWrapper from "../../../../../components/wrapers/upholstery-wrapper";
 
 interface SSRHomeData {
   configDetails: ConfigDetails;
 }
+const Panorama: any = dynamic(import("../../../../../components/vr/panorama"), {
+  ssr: false,
+});
 const Upholstery: NextPage<SSRHomeData> = ({ configDetails }) => {
+  const upholstery = configDetails?.availableUpholstery ?? [];
+  const [selectedUpholstery, setSelectedUpholstery] = useState(upholstery[0]);
 
   return (
     <div className="outer-main">
       <>
-        <CommonHeader
-          showDropdownByDefault={true}>
-          <DropdownListItems
-            header="Select Upholstery"
-            onSelect={(data: any, index: any) => {
-            }}
-            options={configDetails?.availableUpholstery ?? []}
-          ></DropdownListItems>
-           
-        </CommonHeader>
-        <Image
-              //loader={myLoader}
-              src="https://sreena.oorjit.net/virtual-showroom/images/image 2.png"
-              alt="Picture of the author"
-              width={1440}
-              height={770}
-              className="fullwidthimage"/>
-        <Footer />
+        {/* <UpholsteryWrapper
+          data={configDetails}
+          selectedItem={selectedUpholstery}
+          onSelect={(item: any, index: number) => {
+            setSelectedUpholstery(upholstery[index])
+          }} /> */}
       </>
     </div>
   );

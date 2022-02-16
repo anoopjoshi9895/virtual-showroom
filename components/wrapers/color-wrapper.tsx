@@ -1,10 +1,13 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ColorVariantDetails } from "../../api-service/api-models";
-import ColorSlider from "../detail/color-slider";
+import { useOnLoadImages } from "../../hooks/use-onload-images";
+import CommonSlider from "../detail/common-slider";
 import Footer from "../footer/footer";
 import CommonHeader from "../header/common-header";
 import DropdownListItems from "../header/dropdown-list-items";
+import PercentageLoader from "../loader/percentage-loader";
+import { getSliderData } from "../utils";
 
 const ColorWraper = (props: { data: ColorVariantDetails }) => {
   const router = useRouter();
@@ -19,39 +22,50 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const [selectedColor, setSelectedColor] = useState(colors[currentSlide]);
 
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const { status: imagesLoaded, percentage } = useOnLoadImages(wrapperRef);
+
   return (
     <>
       <CommonHeader
         showDropdownByDefault={true}
-        extraButtons={[{ title: "Back to colors", link: "/" }]}>
+        extraButtons={[{ title: "Back to colors", link: "/" }]}
+      >
         <DropdownListItems
           header="Select Color"
           onSelect={(data: any, index: any) => {
             setCurrentSlide(index);
             setSelectedColor(data);
           }}
-          options={colors ?? []}
+          options={
+            colors?.map((p) => {
+              return {
+                name: p.variantName,
+                thumbnail: p.thumbNail,
+                payload: p,
+              };
+            }) ?? []
+          }
         ></DropdownListItems>
       </CommonHeader>
       {colors?.length > 0 && (
-        <>
-          <ColorSlider
+        <div ref={wrapperRef}>
+          <CommonSlider
             gotoSlide={currentSlide}
-            fadeOut={fadeOut}
             onItemClick={(item: any) => {
               router.push(
-                "/360/id/" +
-                data.productID +
-                "/variantID/" +
-                item.variantID
+                "/360/id/" + data.productID + "/variantID/" + item.id
               );
             }}
             initialSlide={currentSlide}
-            data={data}
+            vehicles={getSliderData(colors)}
             onChangeSlide={onChangeSlide}
           />
-          <Footer />
-        </>
+          {/* <Footer /> */}
+        </div>
+      )}
+      {!imagesLoaded && (
+        <PercentageLoader percentage={percentage + 30}></PercentageLoader>
       )}
     </>
   );

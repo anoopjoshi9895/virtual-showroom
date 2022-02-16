@@ -6,10 +6,7 @@ import $ from "jquery";
 interface CustomProps {
   data: any;
   imageUrl: string;
-  class?: string;
-  noOverlay?: boolean;
   onClick: any;
-  fadeOut?: boolean;
 }
 
 const DetailBannerItem: React.FunctionComponent<CustomProps> = (
@@ -19,7 +16,6 @@ const DetailBannerItem: React.FunctionComponent<CustomProps> = (
   const width = size.width;
 
   const p = props.data;
-
   return (
     <div className="slide-detail">
       <span className="d-block">

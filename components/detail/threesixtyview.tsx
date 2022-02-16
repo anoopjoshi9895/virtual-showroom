@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useOnLoadImages } from "../../hooks/use-onload-images";
 import Rotation from "react-rotation";
+import { Progress } from "react-sweet-progress";
+import PercentageLoader from "../loader/percentage-loader";
 
 const ThreeSixtyView = (props: { images: string[] }) => {
   const [zoom, setZoom] = useState(false);
@@ -12,8 +14,6 @@ const ThreeSixtyView = (props: { images: string[] }) => {
 
   return (
     <div className="align-items-end detailpage-view view-360 d-flex zoomOutview justify-content-center">
-      {!imagesLoaded && <h1>{percentage}%</h1>}
-
       <div
         ref={wrapperRef}
         className={zoom ? "zoomout-view-360 zoom" : "zoomout-view-360"}
@@ -61,6 +61,9 @@ const ThreeSixtyView = (props: { images: string[] }) => {
           className="minus"
         ></button>
       </div>
+      {!imagesLoaded && (
+        <PercentageLoader percentage={percentage + 30}></PercentageLoader>
+      )}
     </div>
   );
 };

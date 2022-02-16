@@ -1,33 +1,32 @@
 import type { GetStaticProps, NextPage } from "next";
-import React from "react";
-import {
-  ConfigDetails,
-} from "../../../../../api-service/api-models";
-import {
-  getConfigDetailsByColorCode,
-} from "../../../../../api-service/api-service";
+import dynamic from "next/dynamic";
+import React, { useState } from "react";
+import { ConfigDetails } from "../../../../../api-service/api-models";
+import { getConfigDetailsByColorCode } from "../../../../../api-service/api-service";
 import Footer from "../../../../../components/footer/footer";
 import CommonHeader from "../../../../../components/header/common-header";
 import DropdownListItems from "../../../../../components/header/dropdown-list-items";
+import TrimWrapper from "../../../../../components/wrapers/trim-wrapper";
 
 interface SSRHomeData {
   configDetails: ConfigDetails;
 }
+const Panorama: any = dynamic(import("../../../../../components/vr/panorama"), {
+  ssr: false,
+});
 const Trim: NextPage<SSRHomeData> = ({ configDetails }) => {
+  const trim = configDetails?.availableTrim ?? [];
+  const [selectedTrim, setSelectedTrim] = useState(trim[0]);
 
   return (
     <div className="outer-main">
       <>
-        <CommonHeader
-          showDropdownByDefault={true}>
-          <DropdownListItems
-            header="Select Trim"
-            onSelect={(data: any, index: any) => {
-            }}
-            options={configDetails?.availableTrim ?? []}
-          ></DropdownListItems>
-        </CommonHeader>
-        <Footer />
+        {/* <TrimWrapper
+          data={configDetails}
+          selectedItem={selectedTrim}
+          onSelect={(item: any, index: number) => {
+            setSelectedTrim(trim[index])
+          }}/> */}
       </>
     </div>
   );

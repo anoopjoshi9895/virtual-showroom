@@ -21,7 +21,7 @@ const CommonHeader = (props: {
                 <HeaderButton
                   key={"header-button-" + index}
                   link={p.link}
-                  name="Back to colors"
+                  name={p.title}
                 />
               );
             })}

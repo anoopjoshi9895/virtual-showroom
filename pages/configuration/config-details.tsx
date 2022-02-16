@@ -1,21 +1,18 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { ColorVariantDetails } from "../../api-service/api-models";
-import ColorSlider from "../../components/detail/color-slider";
+import CommonSlider from "../../components/detail/common-slider";
 import Footer from "../../components/footer/footer";
 import CommonHeader from "../../components/header/common-header";
 import DropdownListItems from "../../components/header/dropdown-list-items";
 
-const ColorWraper = (props: {
-  data: ColorVariantDetails;
-}) => {
+const ColorWraper = (props: { data: any }) => {
   const router = useRouter();
   const [fadeOut, setFadeOut] = useState(false);
   const onChangeSlide = (currentSlide: number) => {
     // setCurrentSlide(currentSlide);
     setSelectedColor(colors[currentSlide]);
   };
-  const data = props?.data
+  const data = props?.data;
   const colors = props?.data?.availableColors ?? [];
   const initialSlide = colors?.length > 1 ? 1 : 0;
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
@@ -25,7 +22,8 @@ const ColorWraper = (props: {
     <>
       <CommonHeader
         showDropdownByDefault={true}
-        extraButtons={[{ title: "Back to colors", link: "/" }]}>
+        extraButtons={[{ title: "Back to colors", link: "/" }]}
+      >
         <DropdownListItems
           header="Select Color"
           onSelect={(data: any, index: any) => {
@@ -37,17 +35,21 @@ const ColorWraper = (props: {
       </CommonHeader>
       {colors?.length > 0 && (
         <>
-          <ColorSlider
+          <CommonSlider
             gotoSlide={currentSlide}
-            fadeOut={fadeOut}
             onItemClick={(item: any) => {
-              router.push("/360/id/" + data.productID + "/variantID/" + selectedColor.variantID);
+              router.push(
+                "/360/id/" +
+                  data.productID +
+                  "/variantID/" +
+                  selectedColor.variantID
+              );
             }}
             initialSlide={currentSlide}
-            data={data}
+            vehicles={data}
             onChangeSlide={onChangeSlide}
           />
-          <Footer />
+          {/* <Footer /> */}
         </>
       )}
     </>
