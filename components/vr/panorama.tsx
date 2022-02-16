@@ -1,9 +1,7 @@
 import { Pannellum } from "@georgedrpg/pannellum-react-next";
-import { useWindowSize } from "../hooks/use-window";
 
 const Panorama = (props: { image: string }) => {
   const image = props?.image;
-  const size = useWindowSize();
   return (
     <Pannellum
       width={1440}

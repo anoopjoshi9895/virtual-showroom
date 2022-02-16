@@ -2,7 +2,10 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { ICarSeries } from "../../../api-service/api-models";
-import { getDetailsBySeries } from "../../../api-service/api-service";
+import {
+  getAllSeries,
+  getDetailsBySeries,
+} from "../../../api-service/api-service";
 
 const DetailWraper: any = dynamic(
   import("../../../components/wrapers/detail-wraper"),
@@ -26,24 +29,24 @@ const ShowroomDetails: NextPage<SSRHomeData> = ({ carList }) => {
   );
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const carList = await getAllSeries();
-//   const paths = carList?.map((data) => {
-//     return {
-//       params: {
-//         series: data.seriesKey,
-//         model: data.modelCode,
-//       },
-//     };
-//   });
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  const carList = await getAllSeries();
+  const paths = carList?.map((data) => {
+    return {
+      params: {
+        series: data.seriesKey,
+        model: data.modelCode,
+      },
+    };
+  });
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-export const getServerSideProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  //export const getServerSideProps: GetStaticProps = async ({ params }) => {
   const carList = await getDetailsBySeries(
     params?.series?.toString(),
     params?.model?.toString()
