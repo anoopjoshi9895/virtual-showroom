@@ -45,20 +45,34 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
           })}
         </div>
       )}
-      <div ref={wrapperRef}>
-        {vehicles?.length > 0 && (
-          <CommonSlider
-            onItemClick={(item: any) => {
-              router.push("/color/" + item.id?.toString());
-            }}
-            initialSlide={initialSlide}
-            vehicles={getVehiclesSliderData(vehicles, directionNumber)}
-            onChangeSlide={onChangeSlide}
-          />
-        )}
+      <div className="align-items-center detailpage-view d-flex zoomOutview">
+        <div
+          style={{
+            height: imagesLoaded ? undefined : 0,
+            display: imagesLoaded ? "block" : "none",
+          }}
+        >
+          <div ref={wrapperRef}>
+            {vehicles?.length > 0 && (
+              <CommonSlider
+                onItemClick={(item: any) => {
+                  router.push("/color/" + item.id?.toString());
+                }}
+                initialSlide={initialSlide}
+                vehicles={getVehiclesSliderData(vehicles, directionNumber)}
+                onChangeSlide={onChangeSlide}
+              />
+            )}
+          </div>
+        </div>
       </div>
       {!imagesLoaded && (
-        <PercentageLoader percentage={percentage + 30}></PercentageLoader>
+        <PercentageLoader
+          width={90}
+          paddingBottm={"12px"}
+          paddingRight={"2px"}
+          percentage={percentage + 30}
+        ></PercentageLoader>
       )}
       <div className="bottom-0 left-0 position-absolute px-4 py-2 w-100">
         <div className="d-flex flex-wrap justify-content-between">

@@ -10,9 +10,11 @@ export const useOnLoadImages = (ref: RefObject<HTMLElement>) => {
       if ((images?.length ?? 0) > 0) {
         setPercentage(Math.ceil((count / images.length) * 100));
       }
-      setStatus(
-        images.map((image) => image.complete).every((item) => item === true)
-      );
+      setTimeout(() => {
+        setStatus(
+          images.map((image) => image.complete).every((item) => item === true)
+        );
+      }, 500);
     };
 
     if (!ref?.current) return;

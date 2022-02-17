@@ -6,6 +6,7 @@ const apiEndpoint = API_END_POINT;
 
 export async function getAllSeries(): Promise<ICarSeries[]> {
   const url = `${apiEndpoint}/virtualshowroom/`;
+  console.log(url);
   try {
     const response: any = await get(url);
     return (response?.data?.data as any) ?? [];

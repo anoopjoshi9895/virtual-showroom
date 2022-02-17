@@ -62,7 +62,10 @@ const ThreeSixtyView = (props: { images: string[] }) => {
         ></button>
       </div>
       {!imagesLoaded && (
-        <PercentageLoader percentage={percentage + 30}></PercentageLoader>
+        <PercentageLoader
+          strokeWidth={7}
+          percentage={percentage + 30}
+        ></PercentageLoader>
       )}
     </div>
   );

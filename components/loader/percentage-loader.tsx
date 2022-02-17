@@ -1,28 +1,34 @@
 import { Progress } from "react-sweet-progress";
 
-const PercentageLoader = (props: { percentage: number }) => {
+const PercentageLoader = (props: {
+  percentage: number;
+  width?: number;
+  paddingBottm?: string;
+  paddingRight?: string;
+  strokeWidth?: number;
+}) => {
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-      }}
-    >
-      <Progress
+    <div className="FullLoader">
+      <div
         style={{
-          display: "block",
-          marginLeft: "auto",
-          marginRight: "auto",
+          margin: "auto",
           width: "50%",
-          height: "200px",
+          paddingBottom: props.paddingBottm ?? "120px",
+          paddingRight: props.paddingRight ?? "3px",
         }}
-        width={70}
-        type="circle"
-        percent={props.percentage}
-      />
+      >
+        <Progress
+          style={{
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+          width={props.width}
+          strokeWidth={props.strokeWidth ?? 5}
+          type="circle"
+          percent={props.percentage}
+        />
+      </div>
     </div>
   );
 };
