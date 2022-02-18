@@ -45,6 +45,7 @@ const UpholsteryWrapper = (props: {
                 name: p.variantName,
                 thumbnail: p.thumbNail,
                 payload: p,
+                selected: selectedItem.variantID == p.variantID
               };
             }) ?? []
           }
@@ -68,6 +69,7 @@ const UpholsteryWrapper = (props: {
           clone.currentPage = "wheel";
           props.onStateChange(clone);
         }}
+        price={data.offerPrice}
       />
     </>
   );

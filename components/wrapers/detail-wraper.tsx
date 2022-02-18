@@ -45,25 +45,24 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
           })}
         </div>
       )}
-      <div className="align-items-center detailpage-view d-flex zoomOutview">
-        <div
-          style={{
-            height: imagesLoaded ? undefined : 0,
-            display: imagesLoaded ? "block" : "none",
-          }}
-        >
-          <div ref={wrapperRef}>
-            {vehicles?.length > 0 && (
-              <CommonSlider
-                onItemClick={(item: any) => {
-                  router.push("/color/" + item.id?.toString());
-                }}
-                initialSlide={initialSlide}
-                vehicles={getVehiclesSliderData(vehicles, directionNumber)}
-                onChangeSlide={onChangeSlide}
-              />
-            )}
-          </div>
+      <div
+        className="h-100"
+        style={{
+          height: imagesLoaded ? undefined : 0,
+          display: imagesLoaded ? undefined : "none",
+        }}
+      >
+        <div className="h-100" ref={wrapperRef}>
+          {vehicles?.length > 0 && (
+            <CommonSlider
+              onItemClick={(item: any) => {
+                router.push("/color/" + item.id?.toString());
+              }}
+              initialSlide={initialSlide}
+              vehicles={getVehiclesSliderData(vehicles, directionNumber)}
+              onChangeSlide={onChangeSlide}
+            />
+          )}
         </div>
       </div>
       {!imagesLoaded && (

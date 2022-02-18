@@ -42,4 +42,5 @@ export interface IDropdownOption {
   name: string;
   thumbnail: string;
   payload: any;
+  selected: boolean;
 }

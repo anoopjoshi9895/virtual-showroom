@@ -7,21 +7,18 @@ const DropdownItem = (props: {
   onSelect: (data: any) => void;
 }) => {
   const data = props?.data;
+  const selected = data.selected ?? false;
+
   return (
     <li className="position-relative">
       <a
         onClick={() => {
           props.onSelect(data);
         }}
-        className="selected d-flex align-items-center"
+        className={(data.selected ? "selected " : "") + "d-flex align-items-center"}
       >
         <div className="color mr-3 position-absolute left-0">
           <img
-            style={{
-              maxHeight: "100%",
-              maxWidth: "100%",
-              borderRadius: "50px",
-            }}
             src={props.thumbNail}
           ></img>
         </div>

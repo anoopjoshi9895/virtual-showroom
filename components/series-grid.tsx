@@ -16,7 +16,7 @@ const SeriesGrid = (props: { cars: ICarSeries[]; onClick: any }) => {
           return (
             <li key={"car-grid-item" + index}>
               <a
-                href="#"
+              className="cursor-pointer text-white"
                 onClick={() => {
                   props.onClick(p);
                 }}
@@ -27,6 +27,9 @@ const SeriesGrid = (props: { cars: ICarSeries[]; onClick: any }) => {
             </li>
           );
         })}
+        <li>
+              <a className="text-white px-3 reset">List All</a>
+              </li>
       </ul>
     </div>
   );

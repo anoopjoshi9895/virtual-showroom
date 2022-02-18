@@ -28,9 +28,7 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
   return (
     <>
       <CommonHeader
-        showDropdownByDefault={true}
-        extraButtons={[{ title: "Back to colors", link: "/" }]}
-      >
+        showDropdownByDefault={true}>
         <DropdownListItems
           header="Select Color"
           onSelect={(data: any, index: any) => {
@@ -43,6 +41,7 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
                 name: p.variantName,
                 thumbnail: p.thumbNail,
                 payload: p,
+                selected: selectedColor.variantID == p.variantID
               };
             }) ?? []
           }
@@ -65,7 +64,12 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
         </div>
       )}
       {!imagesLoaded && (
-        <PercentageLoader percentage={percentage + 30}></PercentageLoader>
+        <PercentageLoader
+          width={90}
+          paddingBottm={"12px"}
+          paddingRight={"2px"}
+          percentage={percentage + 30}
+        ></PercentageLoader>
       )}
     </>
   );

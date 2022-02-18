@@ -18,7 +18,12 @@ const ThreeSixtyView = (props: { images: string[] }) => {
         ref={wrapperRef}
         className={zoom ? "zoomout-view-360 zoom" : "zoomout-view-360"}
       >
-        <div style={{ height: imagesLoaded ? undefined : 0 }}>
+        <div
+          style={{
+            height: imagesLoaded ? undefined : 0,
+            display: imagesLoaded ? undefined : "none",
+          }}
+        >
           {showFirst && (
             <Rotation
               onChange={(val: any) => {
@@ -63,7 +68,7 @@ const ThreeSixtyView = (props: { images: string[] }) => {
       </div>
       {!imagesLoaded && (
         <PercentageLoader
-          strokeWidth={7}
+          strokeWidth={6}
           percentage={percentage + 30}
         ></PercentageLoader>
       )}

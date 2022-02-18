@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { FullPageLoader } from "../loader";
+import SpeedometerLoader from "../loader/speedometer-loader";
 
 export const Layout = ({ children }: any) => {
   const [routeChangeOccuring, setRouteChangeOccuring] = useState(false);
@@ -18,7 +19,7 @@ export const Layout = ({ children }: any) => {
     <div>
       <div>
         {children}
-        {routeChangeOccuring && <FullPageLoader></FullPageLoader>}
+        {routeChangeOccuring && <SpeedometerLoader></SpeedometerLoader>}
       </div>
     </div>
   );

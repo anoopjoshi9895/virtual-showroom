@@ -76,3 +76,31 @@ export const getVehiclesSliderData = (
   });
   return sliderDataList ?? [];
 };
+
+export const getFormattedAmount = (
+  amount?: number,
+  returnRounded?: Boolean,
+  decimalPoint?: number
+) => {
+  if (amount === undefined) {
+    return "0";
+  }
+  let amt = amount;
+  if (returnRounded) {
+    amt = Math.round(amt);
+  }
+  return amt
+    ?.toFixed(decimalPoint ?? 2)
+    .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$&,");
+}
+
+export const reArrangeCars = (
+  cars?: ICarSeries[]
+) => {
+  const newList = cars?.sort((a, b) => {
+    return a.seriesKey.localeCompare(b.seriesKey)
+  });
+  return newList;
+};
+
+

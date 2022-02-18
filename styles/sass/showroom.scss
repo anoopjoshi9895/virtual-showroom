@@ -5,22 +5,46 @@
 html {
   height: 100%;
 }
-body {
-  background: #000;
+body{
+  height: 100%;
+  background-color: #000;
+ 
+}
+.outer-main {
   overflow: hidden;
   height: 100%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   display: flex;
+  position: absolute;
 }
-.outer-main {
+.showroom-container {
   max-width: 1440px;
   max-height: 770px;
+  height: 100vh;
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
+  &:before{
+    background: url(/images/digital_showroom_bg_web.webp) center bottom -239px no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    left:0;
+    top:0;
+    transition: all ease .5s;
+  }
+  &.detailpage-outer-main,&.view-360{
+    &:before{
+      transform: scale(1.5);
+    }
+  }
 }
+
 .outer-div {
   height: 100vh;
   max-height: 770px;
@@ -81,7 +105,7 @@ body {
   border-radius: 2px;
   padding: 10px;
   border: #bbb8b8 1px solid;
-  width: 184px;
+  width: 227px;
   h6 {
     font-size: 12px;
     color: #fff;
@@ -108,6 +132,10 @@ body {
     font-size: 13px;
     font-weight: 700;
     color: #fff;
+    &.reset{
+      width: auto;
+      display: inline-flex;
+    }
   }
 }
 .container-left,
@@ -148,7 +176,9 @@ body {
   }
   .zoomview {
     transform: translate3d(58%, 324px, -267px);
-    border-radius: 0 0% 0 52%;
+    border-radius: 0 0% 0 70%;
+    margin-left: -220px;
+
   }
 }
 .container-right {
@@ -181,8 +211,11 @@ body {
     right: 80%;
   }
   .zoomview {
-    transform: translate3d(20%, 324px, -262px);
-    border-radius: 0 0 94% 0;
+    transform: translate3d(20%, 311px, -262px);
+    border-radius: 0 0 124% 0;
+    width: 526px;
+    height: 280px;
+    bottom: 168px;
   }
 }
 
@@ -197,7 +230,7 @@ body {
   position: absolute;
   width: 896px;
   height: 450px;
-  transition: all ease 0.5s;
+  transition: all ease 0.6s;
   animation: fadeIn 1s 0.5s both;
 
   .hover {
@@ -214,7 +247,7 @@ body {
       top: 40%;
     }
     &:hover {
-      z-index: 111;
+      z-index: 1111;
       .detailview {
         opacity: 1;
       }
@@ -234,6 +267,9 @@ body {
     }
   }
   &.two .series-name {
+    svg{
+      width: 100px;
+    }
     span {
       font-size: 20px;
     }
@@ -294,8 +330,6 @@ body {
   z-index: 8;
 }
 .main-slider {
-  background: url(/images/digital_showroom_bg_web.webp) center bottom -239px no-repeat;
-  background-size: cover;
   height: 100vh;
   max-width: 1440px;
   max-height: 770px;
@@ -323,8 +357,14 @@ body {
       background: url(/images/down-arrow.png) no-repeat;
     }
   }
-  .slick-current {
-    z-index: 1;
+  .slick-slide{
+    &.slick-current {
+      z-index: 1000;
+    }
+    &:not(.slick-current) {
+      z-index: -1000;
+    }
+   
   }
 }
 .zoomout {
@@ -396,12 +436,11 @@ body {
   animation: rotate 1s 0.5s both;
 }
 .zoomview {
-  // background: #000;
-  width: 400px;
-  height: 200px;
+  width: 600px;
+  height: 258px;
   position: absolute;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-around;
 
   .zoom {
@@ -430,27 +469,40 @@ body {
   animation: fadeIn 1s 0.5s both;
   transition: all ease 0.5s;
 }
-body {
+.outer-main {
   &.zoomIn {
+    .showroom-container{
+      &:before{
+        transform: scale(1.5);
+      }
+    }
     .main-slider {
       --tzOne: 135px;
       --tzTwo: 350px;
-      --tzThree: -250px;
-      --tzFour: -805px;
-      transform: scale(1.5);
+      --tzThree: -157px;
+      --tzFour: -390px;
       .side.one,
       .side.two {
         animation: fadeIn 2s both;
         transition: all ease 1s;
       }
+      
+    }
+    
+    .container-left{
       .side.three {
-        transform: translate3d(var(--txRight), var(--tyThree), var(--tzThree))
-          scale(1.3);
+        transform: translate3d(var(--txLeft), var(--tyOne), var(--tzThree));
       }
       .side.four {
-        transform: translate3d(var(--txRight), var(--tyFour), var(--tzFour))
-          scale(1.3);
-       
+        transform: translate3d(var(--txLeft), var(--tyTwo), var(--tzFour));
+      }
+    }
+    .container-right{
+      .side.three {
+        transform: translate3d(var(--txRight), var(--tyOne), var(--tzThree));
+      }
+      .side.four {
+        transform: translate3d(var(--txRight), var(--tyTwo), var(--tzFour));
       }
     }
     .zoomout {
@@ -460,7 +512,7 @@ body {
       display: none;
     }
     .slick-arrow {
-      display: none;
+      display: none!important;
     }
   }
   &:not(.zoomIn) {
@@ -475,15 +527,9 @@ body {
   }
 }
 .detailpage-view {
-  background: url(/images/digital_showroom_bg_web.webp) center bottom -160px no-repeat;
-  background-size: cover;
-  height: 100vh;
-  width: 1440px;
-  max-height: 770px;
-  &.view-360 {
-    background-image: url(/images/digital_showroom_detail-page_bg_web.webp);
-    background-position: center bottom -112px;
-    padding-bottom: 172px;
+  position: relative;
+  z-index: 11;
+  .view-360 {
     .plus,
     .minus {
       border: 0;
@@ -540,6 +586,10 @@ body {
         transform: rotate(45deg);
       }
     }
+    
+  }
+  .single-item .slide-detail{
+    padding: 25% 23% 0;
   }
   .slick-slide {
     .slide-detail {
@@ -586,7 +636,7 @@ body {
       .slide-detail {
         transform: scale(1) translateZ(0);
         .series-name {
-          top: 63px;
+          top: 14px;
           &:before {
             border-top: #fcfcfc 8px solid;
             border-left: transparent 6px solid;
@@ -864,6 +914,11 @@ body {
     height: 34px;
     border-radius: 50%;
     border: #fff 1px solid;
+    img{
+      width:34px;
+      height: 34px;
+      object-fit: cover;
+    }
   }
 }
 .option-outer {
@@ -897,11 +952,15 @@ body {
         border-radius: 50%;
         border: #fff 1px solid;
         transition: transform 0.2s;
-        
+        overflow: hidden;
+        img{
+          width: 34px;
+          height: 34px;
+          object-fit: cover;
+        }
       }
       &.selected {
         .color {
-          background-clip: content-box;
           padding: 2px;
           transform: scale(1.2);
         }

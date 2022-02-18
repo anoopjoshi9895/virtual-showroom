@@ -1,16 +1,19 @@
-import { AvailableOption } from "../../api-service/api-models";
 import { IConfigState } from "../../pages/360/id/[product_id]/variantID/[variant_id]";
+import { getFormattedAmount } from "../utils";
 import FooterItem from "./footer-item";
 
 const Footer = (props: {
   state: IConfigState;
   onClickNext?: () => void;
   onClickPrevious?: () => void;
+  nextButtonText?: string;
+  price: string;
 }) => {
   const trim = props?.state?.trim;
   const wheel = props?.state?.wheel;
   const upholstery = props?.state?.upholstery;
   const color = props?.state?.color;
+  const price = props?.price;
 
   const data: IFooterData[] = [
     {
@@ -51,7 +54,11 @@ const Footer = (props: {
                   <span className="font-xsmall text-uppercase text-white ">
                     Net Price
                   </span>
-                  <div className="price">AED 1,80,650</div>{" "}
+                  <div className="price">
+                    {`AED ${getFormattedAmount(
+                      Number(price ?? 0),
+                    )}`}
+                  </div>{" "}
                 </div>
                 {props?.onClickPrevious && (
                   <button
@@ -71,7 +78,7 @@ const Footer = (props: {
                     }}
                     className="btn-primary ml-2 btn"
                   >
-                    Next
+                    {props.nextButtonText ?? "Next"}
                   </button>
                 )}
               </div>

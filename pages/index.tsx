@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ICarSeries } from "../api-service/api-models";
 import { getAllSeries } from "../api-service/api-service";
 import ThreeSixtyView from "../components/detail/threesixtyview";
+import { reArrangeCars } from "../components/utils";
 import DetailWraper from "../components/wrapers/detail-wraper";
 import ShowroomWraper from "../components/wrapers/showroom-wraper";
 
@@ -14,9 +15,9 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
   const [isZoomedIn, setZoomedIn] = useState(false);
   const [isDetailView, setIsDetailView] = useState(false);
   const router = useRouter();
+  const cars = reArrangeCars(carList) ?? []
   return (
-    <body className={isZoomedIn ? "zoomIn" : ""}>
-      <div className="outer-main">
+      <div className={"outer-main" + (isZoomedIn ? " zoomIn" : "")}>
         {!isDetailView && (
           <ShowroomWraper
             onCarSelect={(car: ICarSeries) => {
@@ -25,12 +26,11 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
             onZoomClick={() => {
               setZoomedIn(!isZoomedIn);
             }}
-            carList={carList}
+            carList={cars}
           ></ShowroomWraper>
         )}
         {/* {isDetailView && <ThreeSixtyView></ThreeSixtyView>} */}
       </div>
-    </body>
   );
 };
 

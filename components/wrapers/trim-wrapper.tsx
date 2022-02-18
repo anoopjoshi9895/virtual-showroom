@@ -47,6 +47,7 @@ const TrimWrapper = (props: {
                   name: p.variantName,
                   thumbnail: p.thumbNail,
                   payload: p,
+                  selected: selectedItem.variantID == p.variantID
                 };
               }) ?? []
             }
@@ -55,12 +56,17 @@ const TrimWrapper = (props: {
         <Panorama image={selectedItem?.productImages?.[1] ?? ""} />
         <Footer
           state={props?.state}
-          onClickNext={() => {}}
+          onClickNext={() => {
+            const clone = { ...props.state };
+            clone.currentPage = "summary";
+            props.onStateChange(clone);
+          }}
           onClickPrevious={() => {
             const clone = { ...props.state };
             clone.currentPage = "wheel";
             props.onStateChange(clone);
           }}
+          price={data.offerPrice}
         />
       </>
     </div>
