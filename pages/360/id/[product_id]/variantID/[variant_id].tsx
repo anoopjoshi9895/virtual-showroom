@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import React, { useState } from "react";
 import {
   AvailableOption,
@@ -7,6 +7,7 @@ import {
 import { getConfigDetailsByColorCode } from "../../../../../api-service/api-service";
 import { ConfigBuilder } from "../../../../../components/config-builder";
 import ImagePreloader from "../../../../../components/image-preloader";
+import { getConfigStaticPaths } from "../../../../../components/utils";
 
 interface SSRHomeData {
   selectedColor: AvailableOption;
@@ -33,12 +34,12 @@ const ThreeSixty: NextPage<SSRHomeData> = ({
   );
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return getConfigStaticPaths();
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  return getConfigStaticPaths();
+};
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-export const getServerSideProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  //export const getServerSideProps: GetStaticProps = async ({ params }) => {
   const configDetails = await getConfigDetailsByColorCode(
     params?.product_id?.toString(),
     params?.variant_id?.toString()
