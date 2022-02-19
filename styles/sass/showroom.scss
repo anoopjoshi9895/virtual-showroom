@@ -39,10 +39,12 @@ body{
     transition: all ease .5s;
   }
   &.detailpage-outer-main,&.view-360{
+    perspective: 100px;
     &:before{
       transform: scale(1.5);
     }
   }
+ 
 }
 
 .outer-div {
@@ -67,7 +69,7 @@ body{
   max-width: 1440px;
 }
 .navigations {
-  z-index: 100;
+  z-index: 100000;
   .back {
     background: rgba(187, 184, 184, 0.82);
     border: #bbb8b8 1px solid;
@@ -528,28 +530,8 @@ body{
 }
 .detailpage-view {
   position: relative;
-  z-index: 11;
-  .view-360 {
-    .plus,
-    .minus {
-      border: 0;
-      background-color: transparent;
-      padding: 0;
-      margin: 0;
-      width: 58px;
-      height: 38px;
-      cursor: pointer;
-      outline: 0;
-    }
-    .plus {
-      background: url(/images/plus.png) no-repeat;
-      margin-right: 5px;
-    }
-    .minus {
-      background: url(/images/minus.png) no-repeat;
-      margin-left: 5px;
-    }
-  }
+  z-index: 1100;
+
 
   .detail-slider {
     .slick-arrow {
@@ -586,12 +568,12 @@ body{
         transform: rotate(45deg);
       }
     }
+    .slick-track{
+      margin: 0 auto;
+    }
     
   }
-  .single-item .slide-detail{
-    padding: 25% 23% 0;
-  }
-  .slick-slide {
+  .slick-slide{
     .slide-detail {
       transition: transform 0.5s;
       transform: scale(0.7) translateZ(-150px);
@@ -659,6 +641,30 @@ body{
         }
       }
     }
+  }
+}
+.plus-minus-block{
+    z-index: 10000000;
+    width: 20%;
+    left: 40%;
+  .plus,
+  .minus {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    width: 58px;
+    height: 38px;
+    cursor: pointer;
+    outline: 0;
+  }
+  .plus {
+    background: url(/images/plus.png) no-repeat;
+    margin-right: 5px;
+  }
+  .minus {
+    background: url(/images/minus.png) no-repeat;
+    margin-left: 5px;
   }
 }
 .slideCount {
@@ -779,15 +785,18 @@ body{
     }
   }
 }
+.rotationwheel-block{
+  z-index: 10000;
+}
 .zoomOutview {
   animation: zoomOut ease 1s
 };
 .zoomout-view-360{
-  transform: scale(.75) translateZ(-25px);
+  transform: scale(.75) translateZ(-40px);
   transition: all ease .5s;
   
   &.zoom{
-    transform: scale(1);
+    transform: scale(1) translateZ(-40px);
   }
   img{
     margin-bottom: -20%;
@@ -877,6 +886,9 @@ body{
     opacity: 0;
   }
 }
+.selected-item-block-outer{
+  z-index: 100000;
+}
 .selected-item-block {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 14px 14px 0 0;
@@ -914,10 +926,15 @@ body{
     height: 34px;
     border-radius: 50%;
     border: #fff 1px solid;
+    position: relative;
     img{
       width:34px;
       height: 34px;
       object-fit: cover;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
     }
   }
 }
@@ -954,9 +971,13 @@ body{
         transition: transform 0.2s;
         overflow: hidden;
         img{
-          width: 34px;
+          width:34px;
           height: 34px;
           object-fit: cover;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
         }
       }
       &.selected {

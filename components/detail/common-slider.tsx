@@ -40,8 +40,8 @@ const CommonSlider = (props: {
   }, []);
 
   return (
-    <div className="align-items-center detailpage-view d-flex h-100 zoomOutview">
-      {haveMultipleImage && (
+    <div className="align-items-end detailpage-view  d-flex h-100 zoomOutview">
+      {/* {haveMultipleImage && ( */}
         <Slider
           key={"detail-slider-key" + key}
           ref={sliderRef}
@@ -79,34 +79,33 @@ const CommonSlider = (props: {
             );
           })}
         </Slider>
-      )}
-      {arr.length == 1 && (
+      {/* )} */}
+      {/* {arr.length == 1 && (
         <AnimatePresence>
           <motion.div
+          className="h-100"
             key={arr[0].image}
             //   initial={{ opacity: 0, y: 200 }}
-            animate={{ x: [-100, 0], opacity: [0.5, 1] }}
+            animate={{ opacity: [0.5, 1] }}
             transition={{
               x: { type: "spring", stiffness: 100 },
               default: { duration: 1 },
             }}
           >
-            <div
+            <div className="h-100 align-items-end d-flex  single-item"
               onClick={() => {
                 props.onItemClick(arr[0]);
               }}
             >
-              <div className="single-item">
               <DetailBannerItem
                 imageUrl={arr[0].image}
                 onClick={props.onItemClick}
                 data={arr[0]}
               ></DetailBannerItem>
-              </div>
             </div>
           </motion.div>
         </AnimatePresence>
-      )}
+      )} */}
     </div>
   );
 };

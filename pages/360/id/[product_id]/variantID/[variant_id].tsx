@@ -67,7 +67,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export default ThreeSixty;
 
 export interface IConfigState {
-  currentPage: "360" | "upholstery" | "trim" | "wheel" | "summary";
+  currentPage: "360" | "upholstery" | "trim" | "wheel" | "summary" | "booknow";
   color?: AvailableOption;
   trim?: AvailableOption;
   upholstery?: AvailableOption;

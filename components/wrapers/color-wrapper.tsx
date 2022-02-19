@@ -27,13 +27,14 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
 
   return (
     <>
-      <CommonHeader
-        showDropdownByDefault={true}>
+      <CommonHeader showDropdownByDefault={true}>
         <DropdownListItems
           header="Select Color"
           onSelect={(data: any, index: any) => {
-            setCurrentSlide(index);
-            setSelectedColor(data);
+            if (currentSlide !== index) {
+              setCurrentSlide(index);
+              setSelectedColor(data);
+            }
           }}
           options={
             colors?.map((p) => {
@@ -41,14 +42,14 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
                 name: p.variantName,
                 thumbnail: p.thumbNail,
                 payload: p,
-                selected: selectedColor.variantID == p.variantID
+                selected: selectedColor.variantID == p.variantID,
               };
             }) ?? []
           }
         ></DropdownListItems>
       </CommonHeader>
       {colors?.length > 0 && (
-        <div ref={wrapperRef}>
+        <div className="h-100" ref={wrapperRef}>
           <CommonSlider
             gotoSlide={currentSlide}
             onItemClick={(item: any) => {

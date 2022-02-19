@@ -35,7 +35,7 @@ const Footer = (props: {
   ];
 
   return (
-    <div className="position-absolute w-100 bottom-0 left-0">
+    <div className="position-absolute w-100 bottom-0 left-0 selected-item-block-outer">
       <div className="container">
         <div className="selected-item-block p-3">
           <div className="row align-items-center justify-content-between">

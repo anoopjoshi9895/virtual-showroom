@@ -5,6 +5,12 @@ export const useOnLoadImages = (ref: RefObject<HTMLElement>) => {
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
+    setTimeout(() => {
+      if (!status) {
+        setPercentage(100);
+        setStatus(true);
+      }
+    }, 5000);
     const updateStatus = (images: HTMLImageElement[]) => {
       const count = images?.filter((p) => p.complete).length;
       if ((images?.length ?? 0) > 0) {

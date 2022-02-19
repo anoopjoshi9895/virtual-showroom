@@ -18,8 +18,10 @@ const ColorDetails: NextPage<SSRHomeData> = ({ details }) => {
     return <div>Loading...</div>;
   }
   return (
-    <div className="detailpage-outer-main showroom-container">
-      <ColorWraper data={details}></ColorWraper>
+    <div className="outer-main">
+      <div className="detailpage-outer-main showroom-container">
+        <ColorWraper data={details}></ColorWraper>
+      </div>
     </div>
   );
 };

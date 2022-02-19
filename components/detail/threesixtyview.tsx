@@ -13,7 +13,8 @@ const ThreeSixtyView = (props: { images: string[] }) => {
   const [showFirst, setShowFirst] = useState(true);
 
   return (
-    <div className="align-items-end detailpage-view view-360 d-flex zoomOutview justify-content-center">
+    <>
+    <div className="align-items-end  detailpage-view showroom-container view-360 d-flex zoomOutview justify-content-center">
       <div
         ref={wrapperRef}
         className={zoom ? "zoomout-view-360 zoom" : "zoomout-view-360"}
@@ -52,20 +53,7 @@ const ThreeSixtyView = (props: { images: string[] }) => {
           )}
         </div>
       </div>
-      <div className="position-absolute bottom-0 left-0 w-100 py-3 justify-content-center d-flex">
-        <button
-          onClick={() => {
-            setZoom(true);
-          }}
-          className="plus"
-        ></button>
-        <button
-          onClick={() => {
-            setZoom(false);
-          }}
-          className="minus"
-        ></button>
-      </div>
+    
       {!imagesLoaded && (
         <PercentageLoader
           strokeWidth={6}
@@ -73,6 +61,21 @@ const ThreeSixtyView = (props: { images: string[] }) => {
         ></PercentageLoader>
       )}
     </div>
+      <div className="position-absolute bottom-0  py-3 justify-content-center d-flex plus-minus-block">
+      <button
+        onClick={() => {
+          setZoom(true);
+        }}
+        className="plus"
+      ></button>
+      <button
+        onClick={() => {
+          setZoom(false);
+        }}
+        className="minus"
+      ></button>
+    </div>
+    </>
   );
 };
 

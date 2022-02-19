@@ -47,24 +47,24 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
       )}
       <div
         className="h-100"
-        style={{
-          height: imagesLoaded ? undefined : 0,
-          display: imagesLoaded ? undefined : "none",
-        }}
-      >
-        <div className="h-100" ref={wrapperRef}>
-          {vehicles?.length > 0 && (
-            <CommonSlider
-              onItemClick={(item: any) => {
-                router.push("/color/" + item.id?.toString());
-              }}
-              initialSlide={initialSlide}
-              vehicles={getVehiclesSliderData(vehicles, directionNumber)}
-              onChangeSlide={onChangeSlide}
-            />
-          )}
+          style={{
+            height: imagesLoaded ? undefined : 0,
+            display: imagesLoaded ? "block" : "none",
+          }}
+        >
+          <div className="h-100" ref={wrapperRef}>
+            {vehicles?.length > 0 && (
+              <CommonSlider
+                onItemClick={(item: any) => {
+                  router.push("/color/" + item.id?.toString());
+                }}
+                initialSlide={initialSlide}
+                vehicles={getVehiclesSliderData(vehicles, directionNumber)}
+                onChangeSlide={onChangeSlide}
+              />
+            )}
+          </div>
         </div>
-      </div>
       {!imagesLoaded && (
         <PercentageLoader
           width={90}
@@ -73,7 +73,7 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
           percentage={percentage + 30}
         ></PercentageLoader>
       )}
-      <div className="bottom-0 left-0 position-absolute px-4 py-2 w-100">
+      <div className="bottom-0 left-0 position-absolute px-4 py-2 w-100 rotationwheel-block">
         <div className="d-flex flex-wrap justify-content-between">
           {vehicles?.length > 0 && (
             <span className="slideCount">
