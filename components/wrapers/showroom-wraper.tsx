@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ICarSeries } from "../../api-service/api-models";
 import { useOnLoadImages } from "../../hooks/use-onload-images";
 import PercentageLoader from "../loader/percentage-loader";
@@ -9,38 +9,45 @@ const ShowroomWraper = (props: {
   carList: ICarSeries[];
   onZoomClick: (zoomIn?: boolean) => void;
   onCarSelect: (car: ICarSeries) => void;
+  onAfterImageLoad: any;
 }) => {
   const carList = props.carList;
   const [cars, setCars] = useState(carList ?? []);
 
   const onChangeSeries = (data: ICarSeries) => {
     if (data == null) {
-      setCars(carList)
+      setCars(carList);
     } else {
       const newList = carList?.filter((p, index) => {
         return p.seriesName === data.seriesName;
       });
-      setCars(newList)
+      setCars(newList);
     }
   };
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { status: imagesLoaded, percentage } = useOnLoadImages(wrapperRef);
+  useEffect(() => {
+    props.onAfterImageLoad(imagesLoaded);
+  }, [imagesLoaded]);
 
   return (
     <>
       <div className="showroom-container">
         <div className="navigations position-absolute w-100 left-0 top-0">
           <div className="container mx-auto d-flex justify-content-end p-3">
-            <SeriesGrid onClick={(data: ICarSeries) => {
-              props.onZoomClick(false);
-              onChangeSeries(data)
-            }} cars={carList}></SeriesGrid>
+            <SeriesGrid
+              onClick={(data: ICarSeries) => {
+                props.onZoomClick(false);
+                onChangeSeries(data);
+              }}
+              cars={carList}
+            ></SeriesGrid>
           </div>
         </div>
         <div ref={wrapperRef}>
           <ShowroomSlider
-            key={'carList' + cars}
+            key={"carList" + cars}
             onItemClick={(item: ICarSeries) => {
               props.onCarSelect(item);
             }}

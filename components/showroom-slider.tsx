@@ -17,20 +17,35 @@ const ShowroomSlider = (props: {
       return e;
     });
   return (
-    <Slider fade={true} cssEase={"linear"} className="main-slider">
-      {arraySlices?.map((p, index) => {
-        return (
+    <>
+      {props.cars.length > 1 && (
+        <Slider fade={true} cssEase={"linear"} className="main-slider">
+          {arraySlices?.map((p, index) => {
+            return (
+              <ShowroomSliderItem
+                onItemClick={(item: ICarSeries) => {
+                  props.onItemClick(item);
+                }}
+                onZoomClick={props.onZoomClick}
+                key={"showroom-slider-item" + index}
+                cars={p!}
+              ></ShowroomSliderItem>
+            );
+          })}
+        </Slider>
+      )}
+      {props.cars.length == 1 && (
+        <div style={{ marginLeft: "50%" }} className="single-item">
           <ShowroomSliderItem
             onItemClick={(item: ICarSeries) => {
               props.onItemClick(item);
             }}
             onZoomClick={props.onZoomClick}
-            key={"showroom-slider-item" + index}
-            cars={p!}
+            cars={props.cars}
           ></ShowroomSliderItem>
-        );
-      })}
-    </Slider>
+        </div>
+      )}
+    </>
   );
 };
 

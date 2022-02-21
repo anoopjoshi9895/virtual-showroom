@@ -16,6 +16,7 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
   const [isZoomedIn, setZoomedIn] = useState(false);
   const router = useRouter();
   const cars = reArrangeCars(carList) ?? [];
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <div className={"outer-main" + (isZoomedIn ? " zoomIn" : "")}>
@@ -26,20 +27,22 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
         onZoomClick={(zoomIn?: boolean) => {
           setZoomedIn(zoomIn ?? !isZoomedIn);
         }}
+        onAfterImageLoad={setImageLoaded}
         carList={cars}
       ></ShowroomWraper>
-      <div style={{ display: "none" }}>
-        <img src="/images/digital_showroom_bg_web.webp"></img>
-        <img src="/images/digital_showroom_detail-page_bg_web.webp"></img>
-        {carList.map((p, index) => {
-          return (
-            <img
-              key={'cat-item-' + index}
-              src={index % 2 === 0 ? p.leftFacingImage : p.rightFacingImage}
-            ></img>
-          );
-        })}
-      </div>
+      {imageLoaded && (
+        <div style={{ display: "none" }}>
+          <img src="/images/digital_showroom_detail-page_bg_web.jpg"></img>
+          {carList.map((p, index) => {
+            return (
+              <img
+                key={"cat-item-" + index}
+                src={index % 2 === 0 ? p.leftFacingImage : p.rightFacingImage}
+              ></img>
+            );
+          })}
+        </div>
+      )}
       {/* {isDetailView && <ThreeSixtyView></ThreeSixtyView>} */}
     </div>
   );
