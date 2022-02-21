@@ -1,16 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useOnLoadImages } from "../../hooks/use-onload-images";
 import Rotation from "react-rotation";
-import { Progress } from "react-sweet-progress";
 import PercentageLoader from "../loader/percentage-loader";
 
 const ThreeSixtyView = (props: { images: string[]; startIndex?: number }) => {
-  const startIndex = props.startIndex ?? 30;
+  const startIndex = props.startIndex ?? 3;
   const [zoom, setZoom] = useState(false);
   const oldImages = props?.images ?? [];
-  const firstImages = oldImages.slice(0, 29)
-  const lastImages = oldImages.slice(29, oldImages.length)
-  const images = lastImages.concat(firstImages)
+  const firstImages = oldImages.slice(0, 29);
+  const lastImages = oldImages.slice(29, oldImages.length);
+  const images = lastImages.concat(firstImages);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { status: imagesLoaded, percentage } = useOnLoadImages(wrapperRef);

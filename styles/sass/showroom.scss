@@ -27,7 +27,7 @@ body {
   overflow: hidden;
   position: relative;
   &:before {
-    background: url(/images/digital_showroom_detail-page_bg_web.jpg) center bottom -204px no-repeat;
+    background: url(/images/digital_showroom_bg_web.jpg) center bottom -230px no-repeat;
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -41,7 +41,7 @@ body {
   &.view-360 {
     perspective: 100px;
     &:before {
-      transform: scale(1.5);
+      transform: scale(1.2);
     }
   }
 }
@@ -63,6 +63,16 @@ body {
   --tyFour: 693px;
   --txLeft: -690px;
   --txRight: 490px;
+    // --tzOne: -110px;
+    // --tzTwo: -306px;
+    // --tzThree: -490px;
+    // --tzFour: -855px;
+    // --tyOne: 360px;
+    // --tyTwo: 516px;
+    // --tyThree: 642px;
+    // --tyFour: 913px;
+    // --txLeft: -185px;
+    // --txRight: 870px;
 }
 .container {
   max-width: 1440px;
@@ -151,24 +161,26 @@ body {
   justify-content: start;
   .side {
     border-radius: 0 63% 0 0;
+    backface-visibility: hidden;
     .hover,
     img {
       border-radius: 0 102% 0 0;
+      backface-visibility: hidden;
     }
     &.one {
       animation-delay: 0.1s;
-      transform: translate3d(var(--txLeft), var(--tyOne), var(--tzOne));
+      transform: translate3d(var(--txLeft), var(--tyOne), var(--tzOne)) scale(1,1);
     }
     &.two {
       animation-delay: 0.5s;
-      transform: translate3d(var(--txLeft), var(--tyTwo), var(--tzTwo));
+      transform: translate3d(var(--txLeft), var(--tyTwo), var(--tzTwo)) scale(1,1);
     }
     &.three {
-      transform: translate3d(var(--txLeft), var(--tyThree), var(--tzThree));
+      transform: translate3d(var(--txLeft), var(--tyThree), var(--tzThree)) scale(1,1);
       animation-delay: 1.5s;
     }
     &.four {
-      transform: translate3d(var(--txLeft), var(--tyFour), var(--tzFour));
+      transform: translate3d(var(--txLeft), var(--tyFour), var(--tzFour)) scale(1,1);
       animation-delay: 2.5s;
     }
   }
@@ -192,18 +204,18 @@ body {
     }
     &.one {
       animation-delay: 0.5s;
-      transform: translate3d(var(--txRight), var(--tyOne), var(--tzOne));
+      transform: translate3d(var(--txRight), var(--tyOne), var(--tzOne)) scale(1,1);
     }
     &.two {
       animation-delay: 1s;
-      transform: translate3d(var(--txRight), var(--tyTwo), var(--tzTwo));
+      transform: translate3d(var(--txRight), var(--tyTwo), var(--tzTwo)) scale(1,1);
     }
     &.three {
-      transform: translate3d(var(--txRight), var(--tyThree), var(--tzThree));
+      transform: translate3d(var(--txRight), var(--tyThree), var(--tzThree)) scale(1,1);
       animation-delay: 2s;
     }
     &.four {
-      transform: translate3d(var(--txRight), var(--tyFour), var(--tzFour));
+      transform: translate3d(var(--txRight), var(--tyFour), var(--tzFour)) scale(1,1);
       animation-delay: 3s;
     }
   }
@@ -259,7 +271,7 @@ body {
     top: 50%;
     width: 1400px;
     height: 840px;
-    transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
   }
   &.one .series-name {
     span {

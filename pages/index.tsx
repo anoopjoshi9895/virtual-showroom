@@ -32,7 +32,7 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
       ></ShowroomWraper>
       {imageLoaded && (
         <div style={{ display: "none" }}>
-          <img src="/images/digital_showroom_detail-page_bg_web.jpg"></img>
+          <img src="/images/digital_showroom_bg_web.jpg"></img>
           {carList.map((p, index) => {
             return (
               <img

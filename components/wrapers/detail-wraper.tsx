@@ -13,7 +13,7 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
 
   const [vehicles, setVehicles] = useState(props?.vehicles ?? []);
 
-  const initialSlide = vehicles?.length > 1 ? 1 : 0;
+  const initialSlide = vehicles?.length > 6 ? 7 : 0;
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const onRotationClick = (direction: number) => {
     setDirectionNumber(direction);
@@ -23,7 +23,7 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
     setCurrentSlide(currentSlide);
   };
 
-  const [directionNumber, setDirectionNumber] = useState(0);
+  const [directionNumber, setDirectionNumber] = useState(7);
   const allImageArray = vehicles?.map((p) => p.productImages);
   let allImages: any[] = [];
   allImageArray?.forEach((p) => {
@@ -47,24 +47,24 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
       )}
       <div
         className="h-100"
-          style={{
-            height: imagesLoaded ? undefined : 0,
-            display: imagesLoaded ? "block" : "none",
-          }}
-        >
-          <div className="h-100" ref={wrapperRef}>
-            {vehicles?.length > 0 && (
-              <CommonSlider
-                onItemClick={(item: any) => {
-                  router.push("/color/" + item.id?.toString());
-                }}
-                initialSlide={initialSlide}
-                vehicles={getVehiclesSliderData(vehicles, directionNumber)}
-                onChangeSlide={onChangeSlide}
-              />
-            )}
-          </div>
+        style={{
+          height: imagesLoaded ? undefined : 0,
+          display: imagesLoaded ? "block" : "none",
+        }}
+      >
+        <div className="h-100" ref={wrapperRef}>
+          {vehicles?.length > 0 && (
+            <CommonSlider
+              onItemClick={(item: any) => {
+                router.push("/color/" + item.id?.toString());
+              }}
+              initialSlide={initialSlide}
+              vehicles={getVehiclesSliderData(vehicles, directionNumber)}
+              onChangeSlide={onChangeSlide}
+            />
+          )}
         </div>
+      </div>
       {!imagesLoaded && (
         <PercentageLoader
           width={90}
@@ -82,7 +82,11 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
               <span className="total">{vehicles?.length ?? 0}</span>
             </span>
           )}
-          <RotaionWheel onFadeOut={() => {}} onClick={onRotationClick} />
+          <RotaionWheel
+            activeNumber={directionNumber}
+            onFadeOut={() => {}}
+            onClick={onRotationClick}
+          />
         </div>
       </div>
     </>
