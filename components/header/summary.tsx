@@ -36,7 +36,7 @@ const Summary = (props: {
         <div className="container d-flex justify-content-end">
           <div className="option-color p-3 mt-4">
             <h6 className="font-small text-white">{"Summary"}</h6>
-            <h6 className="font-small text-white">{data.productTitle}</h6>
+            <h5 className="font-lg text-white">{data.productTitle}</h5>
             <div className="mt-4">
               {summaryData.map((p, index) => {
                 return (

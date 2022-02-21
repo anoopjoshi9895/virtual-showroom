@@ -7,7 +7,7 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 99999999999;
   overflow: hidden;
-}
+} 
 
 .loader {
   width: 150px;

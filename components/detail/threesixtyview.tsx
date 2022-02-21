@@ -4,9 +4,13 @@ import Rotation from "react-rotation";
 import { Progress } from "react-sweet-progress";
 import PercentageLoader from "../loader/percentage-loader";
 
-const ThreeSixtyView = (props: { images: string[] }) => {
+const ThreeSixtyView = (props: { images: string[]; startIndex?: number }) => {
+  const startIndex = props.startIndex ?? 30;
   const [zoom, setZoom] = useState(false);
-  const images = props?.images ?? [];
+  const oldImages = props?.images ?? [];
+  const firstImages = oldImages.slice(0, 29)
+  const lastImages = oldImages.slice(29, oldImages.length)
+  const images = lastImages.concat(firstImages)
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { status: imagesLoaded, percentage } = useOnLoadImages(wrapperRef);
@@ -45,8 +49,14 @@ const ThreeSixtyView = (props: { images: string[] }) => {
             {/* {!showFirst && ( */}
             <Rotation reverse={true} cycle={true} autoPlay={false}>
               {images?.map((p, index) => {
+                const actualIndex = (index + startIndex) % 36;
+                const element = images[actualIndex];
                 return (
-                  <img className="test" key={"rotation-images-" + p} src={p} />
+                  <img
+                    className="test"
+                    key={"rotation-images-" + actualIndex}
+                    src={element}
+                  />
                 );
               })}
             </Rotation>

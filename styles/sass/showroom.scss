@@ -16,7 +16,7 @@ body {
   align-items: center;
   justify-content: center;
   display: flex;
-  position: absolute;
+  position: relative;
 }
 .showroom-container {
   max-width: 1440px;
@@ -185,10 +185,10 @@ body {
   justify-content: end;
   perspective-origin: 0 0;
   .side {
-    border-radius: 55% 0 0 0;
+    border-radius: 100% 0 0 0;
     .hover,
     img {
-      border-radius: 55% 0 0 0;
+      border-radius: 100% 0 0 0;
     }
     &.one {
       animation-delay: 0.5s;
@@ -572,8 +572,8 @@ body {
       transition: transform 0.5s;
       transform: scale(0.7) translateZ(-150px);
       position: relative;
-      height: 468px;
-      img {
+      height: 468px;z-index: 1;
+      img{
         width: 780px;
         height: 468px;
         max-width: inherit;
@@ -610,6 +610,7 @@ body {
     &.slick-center {
       .slide-detail {
         transform: scale(1) translateZ(0);
+        z-index: 100;
         .series-name {
           top: 14px;
           &:before {
@@ -794,6 +795,7 @@ body {
     margin-bottom: -20%;
   }
 }
+
 @keyframes zoomOut {
   0% {
     transform: scale(1.2);

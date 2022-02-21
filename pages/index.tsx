@@ -34,7 +34,7 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
         {carList.map((p, index) => {
           return (
             <img
-              key={"temp-images" + index}
+              key={'cat-item-' + index}
               src={index % 2 === 0 ? p.leftFacingImage : p.rightFacingImage}
             ></img>
           );
