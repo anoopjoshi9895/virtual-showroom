@@ -34,6 +34,8 @@ const ThreeSixtyView = (props: { images: string[] }) => {
                 }}
                 key={"rotation-key-" + imagesLoaded}
                 // autoPlay={true}
+                reverse={true}
+                cycle={true}
               >
                 {images?.map((p, index) => {
                   return (
