@@ -10,7 +10,7 @@ export const useOnLoadImages = (ref: RefObject<HTMLElement>) => {
         setPercentage(100);
         setStatus(true);
       }
-    }, 5000);
+    }, 10000);
     const updateStatus = (images: HTMLImageElement[]) => {
       const count = images?.filter((p) => p.complete).length;
       if ((images?.length ?? 0) > 0) {
