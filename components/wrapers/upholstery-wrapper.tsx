@@ -58,6 +58,11 @@ const UpholsteryWrapper = (props: {
         className="fullwidthimage"
       />
       <Footer
+       onClick={(currentPage: any) => {
+        const clone = { ...props.state };
+        clone.currentPage = currentPage;
+        props.onStateChange(clone);
+      }}
         onClickPrevious={() => {
           const clone = { ...props.state };
           clone.currentPage = "360";

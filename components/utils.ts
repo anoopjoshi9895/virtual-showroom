@@ -90,17 +90,13 @@ export const getFormattedAmount = (
     amt = Math.round(amt);
   }
   return amt
-    ?.toFixed(decimalPoint ?? 2)
+    ?.toFixed(decimalPoint ?? 0)
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$&,");
-}
+};
 
-export const reArrangeCars = (
-  cars?: ICarSeries[]
-) => {
+export const reArrangeCars = (cars?: ICarSeries[]) => {
   const newList = cars?.sort((a, b) => {
-    return a.seriesKey.localeCompare(b.seriesKey)
+    return a.seriesKey.localeCompare(b.seriesKey);
   });
   return newList;
 };
-
-

@@ -1,9 +1,14 @@
 import { IFooterData } from "./footer";
 
-const FooterItem = (props: { data: IFooterData }) => {
+const FooterItem = (props: {
+  data: IFooterData,
+  onClick: (currentPage: string) => void;
+}) => {
   const data = props?.data;
   return (
-    <div className="pr-4">
+    <div onClick={() => {
+      props.onClick(data.key)
+    }} className="pr-4">
       <span className="font-xsmall text-uppercase text-white ">
         {data.title}
       </span>

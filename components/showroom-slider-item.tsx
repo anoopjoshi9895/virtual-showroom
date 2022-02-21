@@ -19,15 +19,17 @@ const ShowroomSliderItem = (props: {
         <div className="align-items-end col-6 d-flex column">
           <div className="container-left">
             <div className="layout">
-              <span className="zoomview">
-                {" "}
-                <span
-                  onClick={() => {
-                    props.onZoomClick();
-                  }}
-                  className="zoom"
-                ></span>
-              </span>
+              {(cars?.length ?? 0) > 4 && (
+                <span className="zoomview">
+                  {" "}
+                  <span
+                    onClick={() => {
+                      props.onZoomClick();
+                    }}
+                    className="zoom"
+                  ></span>
+                </span>
+              )}
               {leftImages?.map((p, index) => {
                 return (
                   <div
@@ -59,14 +61,16 @@ const ShowroomSliderItem = (props: {
         <div className="align-items-end col-6 d-flex column">
           <div className="container-right">
             <div className="layout">
-              <span className="zoomview">
-                <span
-                  onClick={() => {
-                    props.onZoomClick();
-                  }}
-                  className="zoom"
-                ></span>
-              </span>
+              {(cars?.length ?? 0) > 4 && (
+                <span className="zoomview">
+                  <span
+                    onClick={() => {
+                      props.onZoomClick();
+                    }}
+                    className="zoom"
+                  ></span>
+                </span>
+              )}
               {rightImages?.map((p, index) => {
                 return (
                   <div

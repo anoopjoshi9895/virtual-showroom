@@ -55,6 +55,11 @@ const TrimWrapper = (props: {
         </CommonHeader>
         <Panorama image={selectedItem?.productImages?.[1] ?? ""} />
         <Footer
+          onClick={(currentPage: any) => {
+            const clone = { ...props.state };
+            clone.currentPage = currentPage;
+            props.onStateChange(clone);
+          }}
           state={props?.state}
           onClickNext={() => {
             const clone = { ...props.state };

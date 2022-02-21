@@ -19,7 +19,11 @@ const ThreeSixtyWrapper = (props: {
       ></CommonHeader>
       <ThreeSixtyView images={state.color?.productImages ?? []} />
       <Footer
-        // onClickPrevious={() => {}}
+        onClick={(currentPage: any) => {
+          const clone = { ...props.state };
+          clone.currentPage = currentPage;
+          props.onStateChange(clone);
+        }}
         state={props?.state}
         onClickNext={() => {
           const clone = { ...props.state };

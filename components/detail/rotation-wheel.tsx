@@ -8,7 +8,7 @@ const RotaionWheel = (props: {
   const [activeNumber, setActiveNumber] = useState(props.activeNumber ?? 0);
   return (
     <div className="d-flex align-items-center">
-      <img src="/images/rotate-element/car.png" className="mr-4 car-icon" />
+      {/* <img src="/images/rotate-element/car.png" className="mr-4 car-icon" /> */}
       <div className="rotate-element">
         {items.map((p, index) => {
           return (

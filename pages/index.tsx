@@ -7,30 +7,41 @@ import ThreeSixtyView from "../components/detail/threesixtyview";
 import { reArrangeCars } from "../components/utils";
 import DetailWraper from "../components/wrapers/detail-wraper";
 import ShowroomWraper from "../components/wrapers/showroom-wraper";
+import { useOnLoadImages } from "../hooks/use-onload-images";
 
 interface SSRHomeData {
   carList: ICarSeries[];
 }
 const Home: NextPage<SSRHomeData> = ({ carList }) => {
   const [isZoomedIn, setZoomedIn] = useState(false);
-  const [isDetailView, setIsDetailView] = useState(false);
   const router = useRouter();
-  const cars = reArrangeCars(carList) ?? []
+  const cars = reArrangeCars(carList) ?? [];
+
   return (
-      <div className={"outer-main" + (isZoomedIn ? " zoomIn" : "")}>
-        {!isDetailView && (
-          <ShowroomWraper
-            onCarSelect={(car: ICarSeries) => {
-              router.push("/details/" + car.seriesKey + "/" + car.modelCode);
-            }}
-            onZoomClick={() => {
-              setZoomedIn(!isZoomedIn);
-            }}
-            carList={cars}
-          ></ShowroomWraper>
-        )}
-        {/* {isDetailView && <ThreeSixtyView></ThreeSixtyView>} */}
+    <div className={"outer-main" + (isZoomedIn ? " zoomIn" : "")}>
+      <ShowroomWraper
+        onCarSelect={(car: ICarSeries) => {
+          router.push("/details/" + car.seriesKey + "/" + car.modelCode);
+        }}
+        onZoomClick={(zoomIn?: boolean) => {
+          setZoomedIn(zoomIn ?? !isZoomedIn);
+        }}
+        carList={cars}
+      ></ShowroomWraper>
+      <div style={{ display: "none" }}>
+        <img src="/images/digital_showroom_bg_web.webp"></img>
+        <img src="/images/digital_showroom_detail-page_bg_web.webp"></img>
+        {carList.map((p, index) => {
+          return (
+            <img
+              key={"temp-images" + index}
+              src={index % 2 === 0 ? p.leftFacingImage : p.rightFacingImage}
+            ></img>
+          );
+        })}
       </div>
+      {/* {isDetailView && <ThreeSixtyView></ThreeSixtyView>} */}
+    </div>
   );
 };
 
@@ -54,3 +65,6 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default Home;
+function wrapperRef(wrapperRef: any): { status: any; percentage: any } {
+  throw new Error("Function not implemented.");
+}

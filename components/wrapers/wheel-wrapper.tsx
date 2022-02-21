@@ -52,6 +52,11 @@ const WheelWrapper = (props: {
       {/* <ThreeSixtyView images={selectedItem?.productImages ?? []} /> */}
       <ThreeSixtyView images={props.state.color?.productImages ?? []} />
       <Footer
+        onClick={(currentPage: any) => {
+          const clone = { ...props.state };
+          clone.currentPage = currentPage;
+          props.onStateChange(clone);
+        }}
         state={props?.state}
         onClickNext={() => {
           const clone = { ...props.state };

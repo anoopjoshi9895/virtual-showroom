@@ -4,6 +4,7 @@ import FooterItem from "./footer-item";
 
 const Footer = (props: {
   state: IConfigState;
+  onClick: (currentPage: string) => void;
   onClickNext?: () => void;
   onClickPrevious?: () => void;
   nextButtonText?: string;
@@ -17,18 +18,22 @@ const Footer = (props: {
 
   const data: IFooterData[] = [
     {
+      key: "360",
       title: "Color",
       image: color?.thumbNail,
     },
     {
+      key: "upholstery",
       title: "Upholstery",
       image: upholstery?.thumbNail,
     },
     {
+      key: "wheel",
       title: "Wheel",
       image: wheel?.thumbNail,
     },
     {
+      key: "trim",
       title: "Trim",
       image: trim?.thumbNail,
     },
@@ -44,7 +49,15 @@ const Footer = (props: {
                 {data
                   ?.filter((p) => p.image)
                   .map((p, index) => {
-                    return <FooterItem key={"item-" + index} data={p} />;
+                    return (
+                      <FooterItem
+                        key={"item-" + index}
+                        onClick={(currentPage: string) => {
+                          props?.onClick(currentPage);
+                        }}
+                        data={p}
+                      />
+                    );
                   })}
               </div>
             </div>
@@ -55,9 +68,7 @@ const Footer = (props: {
                     Net Price
                   </span>
                   <div className="price">
-                    {`AED ${getFormattedAmount(
-                      Number(price ?? 0),
-                    )}`}
+                    {`AED ${getFormattedAmount(Number(price ?? 0))}`}
                   </div>{" "}
                 </div>
                 {props?.onClickPrevious && (
@@ -93,6 +104,7 @@ const Footer = (props: {
 export default Footer;
 
 export interface IFooterData {
+  key: string;
   title: string;
   image?: string;
 }

@@ -1,11 +1,11 @@
 #loader-wrapper {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  background: #000;
-  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99999999999;
   overflow: hidden;
 }
 
@@ -57,7 +57,7 @@
   border: 1px transparent solid;
   border-radius: 50%;
   position: absolute;
-  border-right-color: #e81512;
+  border-right-color: #4161c8;
   -webkit-animation: spin 5s linear infinite;
   animation: spin 5s linear infinite;
 }
@@ -113,7 +113,7 @@
   -ms-transform: rotate(45deg);
   right: 33px;
   bottom: 33px;
-  background: #e81512;
+  background: #4161c8;
 }
 
 .loader .subline {
@@ -166,7 +166,7 @@
   -ms-transform: rotate(22.5deg);
   right: 20px;
   bottom: 49px;
-  background: #e81512;
+  background: #4161c8;
 }
 
 .loader .needle {
@@ -189,7 +189,7 @@
   height: 0;
   border-style: solid;
   border-width: 3.5px 50px 3.5px 0;
-  border-color: transparent #e81512 transparent transparent;
+  border-color: transparent #4161c8 transparent transparent;
   position: absolute;
   right: 50%;
   top: 50%;

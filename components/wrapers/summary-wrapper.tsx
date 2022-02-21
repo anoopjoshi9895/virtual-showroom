@@ -28,6 +28,11 @@ const SummaryWrapper = (props: {
       </CommonHeader>
       <ThreeSixtyView images={state.color?.productImages ?? []} />
       <Footer
+        onClick={(currentPage: any) => {
+          const clone = { ...props.state };
+          clone.currentPage = currentPage;
+          props.onStateChange(clone);
+        }}
         onClickPrevious={() => {
           const clone = { ...props.state };
           clone.currentPage = "trim";
