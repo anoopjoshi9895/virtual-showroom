@@ -3,13 +3,12 @@ import Link from "next/link";
 import { ICarSeries } from "../api-service/api-models";
 
 const SeriesGrid = (props: { cars: ICarSeries[]; onClick: any }) => {
-  const uniqueSeries = props.cars?.filter((value, index, self) =>
-    index === self.findIndex((t) => (
-      t.seriesName === value.seriesName
-    ))
-  )
+  const uniqueSeries = props.cars?.filter(
+    (value, index, self) =>
+      index === self.findIndex((t) => t.seriesName === value.seriesName)
+  );
   return (
-    <div key={'carList' + uniqueSeries} className="choose-series">
+    <div key={"carList" + uniqueSeries} className="choose-series">
       <h6 className="text-center"> Choose Series</h6>
       <ul className="list-unstyled d-flex flex-wrap">
         {uniqueSeries?.map((p, index) => {
@@ -27,13 +26,13 @@ const SeriesGrid = (props: { cars: ICarSeries[]; onClick: any }) => {
             </li>
           );
         })}
-        <li>
+        {/* <li>
           <a
             className="text-white px-3 reset cursor-pointer"
             onClick={() => {
               props.onClick(null);
             }}>List All</a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

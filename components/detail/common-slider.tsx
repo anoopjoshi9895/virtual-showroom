@@ -42,43 +42,43 @@ const CommonSlider = (props: {
   return (
     <div className="align-items-end detailpage-view  d-flex h-100 zoomOutview">
       {/* {haveMultipleImage && ( */}
-        <Slider
-          key={"detail-slider-key" + key}
-          ref={sliderRef}
-          initialSlide={initialSlide}
-          centerMode={true}
-          centerPadding={"30%"}
-          infinite={false}
-          slidesToShow={1}
-          slidesToScroll={1}
-          className="detail-slider w-100"
-          afterChange={(currentSlide: any) => {
-            props.onChangeSlide(currentSlide);
-          }}
-        >
-          {arr?.map((p, index: any) => {
-            return (
-              <AnimatePresence key={"animation" + index}>
-                <motion.div
-                  key={p.image}
-                  //   initial={{ opacity: 0, y: 200 }}
-                  animate={{ opacity: [0.5, 1] }}
-                  transition={{
-                    x: { type: "spring", stiffness: 100 },
-                    default: { duration: 1 },
-                  }}
-                >
-                  <DetailBannerItem
-                    imageUrl={p.image}
-                    onClick={props.onItemClick}
-                    key={"banner item" + index}
-                    data={p}
-                  ></DetailBannerItem>
-                </motion.div>
-              </AnimatePresence>
-            );
-          })}
-        </Slider>
+      <Slider
+        key={"detail-slider-key" + key}
+        ref={sliderRef}
+        initialSlide={initialSlide}
+        centerMode={true}
+        centerPadding={"30%"}
+        infinite={false}
+        slidesToShow={1}
+        slidesToScroll={1}
+        className="detail-slider w-100"
+        afterChange={(currentSlide: any) => {
+          props.onChangeSlide(currentSlide);
+        }}
+      >
+        {arr?.map((p, index: any) => {
+          return (
+            <AnimatePresence key={"animation" + index}>
+              <motion.div
+                key={p.image}
+                //   initial={{ opacity: 0, y: 200 }}
+                animate={{ opacity: [0.5, 1] }}
+                transition={{
+                  x: { type: "spring", stiffness: 100 },
+                  default: { duration: 1 },
+                }}
+              >
+                <DetailBannerItem
+                  imageUrl={p.image}
+                  onClick={props.onItemClick}
+                  key={"banner item" + index}
+                  data={p}
+                ></DetailBannerItem>
+              </motion.div>
+            </AnimatePresence>
+          );
+        })}
+      </Slider>
       {/* )} */}
       {/* {arr.length == 1 && (
         <AnimatePresence>
@@ -116,4 +116,5 @@ export interface ISliderData {
   name: string;
   image: string;
   link: string;
+  payload?: any;
 }

@@ -62,6 +62,19 @@ export const getSliderData = (items: AvailableOption[]) => {
   return sliderDataList ?? [];
 };
 
+export const getSliderDataForShowroomList = (items: ICarSeries[]) => {
+  const sliderDataList: ISliderData[] = items?.map((data) => {
+    return {
+      id: data.seriesKey,
+      name: data.name,
+      image: data.leftFacingImage,
+      link: "details/",
+      payload: data,
+    };
+  });
+  return sliderDataList ?? [];
+};
+
 export const getVehiclesSliderData = (
   items: ICarSeries[],
   direction: number

@@ -18,7 +18,7 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
   };
   const data = props?.data;
   const colors = props?.data?.availableColors ?? [];
-  const initialSlide = colors?.length > 1 ? 1 : 0;
+  const initialSlide = 0;
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const [selectedColor, setSelectedColor] = useState(colors[currentSlide]);
 
@@ -57,7 +57,7 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
                 "/360/id/" + data.productID + "/variantID/" + item.id
               );
             }}
-            initialSlide={currentSlide}
+            initialSlide={0}
             vehicles={getSliderData(colors)}
             onChangeSlide={onChangeSlide}
           />

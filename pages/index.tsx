@@ -6,6 +6,7 @@ import { getAllSeries } from "../api-service/api-service";
 import ThreeSixtyView from "../components/detail/threesixtyview";
 import { reArrangeCars } from "../components/utils";
 import DetailWraper from "../components/wrapers/detail-wraper";
+import NewShowroomWraper from "../components/wrapers/new-showroom-wraper";
 import ShowroomWraper from "../components/wrapers/showroom-wraper";
 import { useOnLoadImages } from "../hooks/use-onload-images";
 
@@ -20,7 +21,7 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
 
   return (
     <div className={"outer-main" + (isZoomedIn ? " zoomIn" : "")}>
-      <ShowroomWraper
+      <NewShowroomWraper
         onCarSelect={(car: ICarSeries) => {
           router.push("/details/" + car.seriesKey + "/" + car.modelCode);
         }}
@@ -29,8 +30,8 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
         }}
         onAfterImageLoad={setImageLoaded}
         carList={cars}
-      ></ShowroomWraper>
-      {imageLoaded && (
+      ></NewShowroomWraper>
+      {/* {imageLoaded && (
         <div style={{ display: "none" }}>
           <img src="/images/digital_showroom_bg_web.jpg"></img>
           {carList.map((p, index) => {
@@ -42,8 +43,7 @@ const Home: NextPage<SSRHomeData> = ({ carList }) => {
             );
           })}
         </div>
-      )}
-      {/* {isDetailView && <ThreeSixtyView></ThreeSixtyView>} */}
+      )} */}
     </div>
   );
 };

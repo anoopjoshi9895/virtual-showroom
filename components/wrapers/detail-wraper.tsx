@@ -58,7 +58,7 @@ const DetailWraper = (props: { vehicles: ICarSeries[] }) => {
               onItemClick={(item: any) => {
                 router.push("/color/" + item.id?.toString());
               }}
-              initialSlide={initialSlide}
+              initialSlide={0}
               vehicles={getVehiclesSliderData(vehicles, directionNumber)}
               onChangeSlide={onChangeSlide}
             />

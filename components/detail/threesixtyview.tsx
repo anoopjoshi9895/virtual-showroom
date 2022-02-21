@@ -29,22 +29,30 @@ const ThreeSixtyView = (props: { images: string[]; startIndex?: number }) => {
             }}
           >
             {/* {showFirst && (
-            <Rotation
-              onChange={(val: any) => {
-                if (imagesLoaded && val === 36) {
-                  setShowFirst(false);
-                }
-              }}
-              key={"rotation-key-" + imagesLoaded}
-              autoPlay={true}
-            >
-              {images?.map((p, index) => {
-                return (
-                  <img className="test" key={"rotation-images-" + p} src={p} />
-                );
-              })}
-            </Rotation>
-          )} */}
+              <Rotation
+                onChange={(val: any) => {
+                  console.log(val);
+
+                  if (imagesLoaded && val === 5) {
+                    setShowFirst(false);
+                  }
+                }}
+                key={"rotation-key-" + imagesLoaded}
+                autoPlay={true}
+              >
+                {images
+                  ?.filter((p, index) => index > 30)
+                  .map((p, index) => {
+                    return (
+                      <img
+                        className="test"
+                        key={"rotation-images-" + p}
+                        src={p}
+                      />
+                    );
+                  })}
+              </Rotation>
+            )} */}
             {/* {!showFirst && ( */}
             <Rotation reverse={true} cycle={true} autoPlay={false}>
               {images?.map((p, index) => {
