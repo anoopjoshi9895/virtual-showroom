@@ -25,42 +25,32 @@ const ThreeSixtyView = (props: { images: string[] }) => {
               display: imagesLoaded ? undefined : "none",
             }}
           >
-            {showFirst && (
-              <Rotation
-                onChange={(val: any) => {
-                  if (imagesLoaded && val === 36) {
-                    setShowFirst(false);
-                  }
-                }}
-                key={"rotation-key-" + imagesLoaded}
-                // autoPlay={true}
-                reverse={true}
-                cycle={true}
-              >
-                {images?.map((p, index) => {
-                  return (
-                    <img
-                      className="test"
-                      key={"rotation-images-" + p}
-                      src={p}
-                    />
-                  );
-                })}
-              </Rotation>
-            )}
-            {!showFirst && (
-              <Rotation reverse={true} cycle={true} autoPlay={false}>
-                {images?.map((p, index) => {
-                  return (
-                    <img
-                      className="test"
-                      key={"rotation-images-" + p}
-                      src={p}
-                    />
-                  );
-                })}
-              </Rotation>
-            )}
+            {/* {showFirst && (
+            <Rotation
+              onChange={(val: any) => {
+                if (imagesLoaded && val === 36) {
+                  setShowFirst(false);
+                }
+              }}
+              key={"rotation-key-" + imagesLoaded}
+              autoPlay={true}
+            >
+              {images?.map((p, index) => {
+                return (
+                  <img className="test" key={"rotation-images-" + p} src={p} />
+                );
+              })}
+            </Rotation>
+          )} */}
+            {/* {!showFirst && ( */}
+            <Rotation reverse={true} cycle={true} autoPlay={false}>
+              {images?.map((p, index) => {
+                return (
+                  <img className="test" key={"rotation-images-" + p} src={p} />
+                );
+              })}
+            </Rotation>
+            {/* )} */}
           </div>
         </div>
 
