@@ -50,12 +50,15 @@ export const getConfigStaticPaths = async () => {
   };
 };
 
-export const getSliderData = (items: AvailableOption[]) => {
+export const getSliderData = (
+  items: AvailableOption[],
+  direction: number
+) => {
   const sliderDataList: ISliderData[] = items?.map((data) => {
     return {
       id: data.variantID,
       name: data.variantName,
-      image: data.productImage ?? "",
+      image: data?.productImages?.[direction] ?? "",
       link: "details/",
     };
   });
@@ -113,3 +116,9 @@ export const reArrangeCars = (cars?: ICarSeries[]) => {
   });
   return newList;
 };
+
+export const toTitles = (s: string) => {
+  return s.replace(/\w\S*/g, function (t) {
+    return t.charAt(0).toUpperCase() + t.substring(1).toLowerCase();
+  });
+}

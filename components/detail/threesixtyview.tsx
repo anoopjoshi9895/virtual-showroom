@@ -28,7 +28,7 @@ const ThreeSixtyView = (props: { images: string[]; startIndex?: number }) => {
               display: imagesLoaded ? undefined : "none",
             }}
           >
-            {/* {showFirst && (
+            {showFirst && (
               <Rotation
                 onChange={(val: any) => {
                   console.log(val);
@@ -52,22 +52,22 @@ const ThreeSixtyView = (props: { images: string[]; startIndex?: number }) => {
                     );
                   })}
               </Rotation>
-            )} */}
-            {/* {!showFirst && ( */}
-            <Rotation reverse={true} cycle={true} autoPlay={false}>
-              {images?.map((p, index) => {
-                const actualIndex = (index + startIndex) % 36;
-                const element = images[actualIndex];
-                return (
-                  <img
-                    className="test"
-                    key={"rotation-images-" + actualIndex}
-                    src={element}
-                  />
-                );
-              })}
-            </Rotation>
-            {/* )} */}
+            )}
+            {!showFirst && (
+              <Rotation reverse={true} cycle={true} autoPlay={false}>
+                {images?.map((p, index) => {
+                  const actualIndex = (index + startIndex) % 36;
+                  const element = images[actualIndex];
+                  return (
+                    <img
+                      className="test"
+                      key={"rotation-images-" + actualIndex}
+                      src={element}
+                    />
+                  );
+                })}
+              </Rotation>
+            )}
           </div>
         </div>
 

@@ -4,8 +4,7 @@ import { useOnLoadImages } from "../../hooks/use-onload-images";
 import CommonSlider, { ISliderData } from "../detail/common-slider";
 import PercentageLoader from "../loader/percentage-loader";
 import SeriesGrid from "../series-grid";
-import ShowroomSlider from "../showroom-slider";
-import { getSliderData, getSliderDataForShowroomList } from "../utils";
+import { getSliderDataForShowroomList } from "../utils";
 
 const NewShowroomWraper = (props: {
   carList: ICarSeries[];
@@ -27,6 +26,10 @@ const NewShowroomWraper = (props: {
   useEffect(() => {
     props.onAfterImageLoad(imagesLoaded);
   }, [imagesLoaded]);
+
+  const onChangeSlide = (currentSlide: number) => {
+    setCurrentSlide(currentSlide);
+  };
 
   return (
     <>
@@ -51,9 +54,8 @@ const NewShowroomWraper = (props: {
               }}
               initialSlide={currentSlide}
               vehicles={getSliderDataForShowroomList(cars ?? [])}
-              onChangeSlide={() => {}}
+              onChangeSlide={onChangeSlide}
             />
-            {/* <Footer /> */}
           </div>
         )}
       </div>
@@ -72,7 +74,7 @@ const NewShowroomWraper = (props: {
           paddingBottm={"12px"}
           paddingRight={"2px"}
           percentage={percentage + 30}
-        ></PercentageLoader>
+        />
       )}
       <a
         onClick={() => {

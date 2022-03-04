@@ -13,7 +13,7 @@ const CommonSlider = (props: {
 }) => {
   const arr = props.vehicles ?? [];
   const initialSlide = props.initialSlide;
-  const sliderRef = React.useRef<any>(null);
+  let  sliderRef: any = React.useRef<any>();
   const [haveMultipleImage, setHaveMultipleImage] = useState(true);
   useEffect(() => {
     if (props.vehicles.length > 1) {
@@ -39,9 +39,48 @@ const CommonSlider = (props: {
     }, 100);
   }, []);
 
+  const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.code === "ArrowLeft") {
+      const slide = props.gotoSlide ?? 0
+      if (slide > 0) {
+        sliderRef?.current?.slickGoTo(slide - 1)
+      }
+    }
+
+    if (event.code === "ArrowRight") {
+      const slide = props.gotoSlide ?? 0
+      if (slide < (arr.length ?? 0)) {
+        sliderRef?.current?.slickGoTo(slide + 1);
+      }
+    }
+  };
+
   return (
-    <div className="align-items-end detailpage-view  d-flex h-100 zoomOutview">
+    <div className="align-items-end detailpage-view  d-flex h-100 zoomOutview" onKeyDown={keyDownHandler}>
       {/* {haveMultipleImage && ( */}
+
+        {/* <Slider
+          ref={(slider) => (sliderRef = slider)}
+          key={"detail-slider-key" + key}
+          dots={false}
+          draggable
+          lazyLoad={'progressive'}
+          infinite={false}
+          speed={500}
+          slidesToShow={1}
+          slidesToScroll={1}
+          arrows={true}
+          pauseOnHover={false}
+          className="detail-slider w-100"
+
+          initialSlide={initialSlide}
+          centerMode={true}
+          afterChange={(currentSlide: any) => {
+            props.onChangeSlide(currentSlide);
+          }}
+          // centerPadding={"30%"}
+        > */}
+          
       <Slider
         key={"detail-slider-key" + key}
         ref={sliderRef}

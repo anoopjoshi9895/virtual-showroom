@@ -1,4 +1,5 @@
 import { AvailableOption } from "../../api-service/api-models";
+import { toTitles } from "../utils";
 
 const DropdownItem = (props: {
   thumbNail: string;
@@ -22,7 +23,7 @@ const DropdownItem = (props: {
             src={props.thumbNail}
           ></img>
         </div>
-        {props.title}
+        {toTitles(props.title)}
       </a>
     </li>
   );

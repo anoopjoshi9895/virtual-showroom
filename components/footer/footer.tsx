@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IConfigState } from "../../pages/360/id/[product_id]/variantID/[variant_id]";
 import { getFormattedAmount } from "../utils";
 import FooterItem from "./footer-item";
@@ -15,6 +16,7 @@ const Footer = (props: {
   const upholstery = props?.state?.upholstery;
   const color = props?.state?.color;
   const price = props?.price;
+  const [showFooter, setShowFooter] = useState(true);
 
   const data: IFooterData[] = [
     {
@@ -40,8 +42,11 @@ const Footer = (props: {
   ];
 
   return (
-    <div className="position-absolute w-100 bottom-0 left-0 selected-item-block-outer">
-      <div className="container">
+    <div className={"position-absolute w-100 bottom-0 left-0 selected-item-block-outer" + (!showFooter ? " slide-down" : "")}>
+      <div className="container position-relative">
+        <a onClick={() => {
+          setShowFooter(!showFooter)
+        }} className="slide-arrows"></a>
         <div className="selected-item-block p-3">
           <div className="row align-items-center justify-content-between">
             <div className="col">

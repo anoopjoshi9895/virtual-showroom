@@ -704,6 +704,7 @@ body {
   }
   a.view {
     cursor: pointer;
+   
     &.back {
       width: 47px;
       height: 40px;
@@ -715,12 +716,14 @@ body {
       height: 47px;
       left: 66px;
       top: 6px;
+      background-position: 17px 16px !important;
     }
     &.vertical-right {
       width: 48px;
       height: 47px;
       left: 78px;
       top: 38px;
+      background-position: 17px 14px !important;
     }
     &.slide-right {
       width: 48px;
@@ -733,6 +736,7 @@ body {
       height: 39px;
       left: 33px;
       top: 80px;
+      background-position: 17px 11px!important;
     }
     &.front-left {
       width: 47px;
@@ -745,12 +749,14 @@ body {
       height: 47px;
       left: -1px;
       top: 34px;
+      background-position: 10px 15px!important;
     }
     &.back-left {
       width: 47px;
       height: 47px;
       left: 4px;
       top: 4px;
+      background-position: 21px 17px!important;
     }
     &:hover,
     &.active {
@@ -776,18 +782,18 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    &:after,
-    &:before {
-      content: "";
-      width: 20px;
-      height: 2px;
-      background-color: #868686;
-      display: block;
-    }
-    &:after {
-      transform: rotate(90deg);
-      margin-left: -20px;
-    }
+    // &:after,
+    // &:before {
+    //   content: "";
+    //   width: 20px;
+    //   height: 2px;
+    //   background-color: #868686;
+    //   display: block;
+    // }
+    // &:after {
+    //   transform: rotate(90deg);
+    //   margin-left: -20px;
+    // }
   }
 }
 .rotationwheel-block {
@@ -894,10 +900,48 @@ body {
 }
 .selected-item-block-outer {
   z-index: 100000;
+  .container{
+    transition: all ease .5s;
+  }
+  .slide-arrows{
+    background:  linear-gradient(136.89deg, rgba(255, 255, 255, 0.4) 2.42%, rgba(255, 255, 255, 0.2) 93.52%);
+    border-radius: 8px 8px 0 0;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    right: 38px;
+    width: 34px;
+    height: 34px;
+    right: 38px;
+    top: -35px;
+    border: rgba(255, 255, 255, 0.29%) 1px solid;
+    cursor: pointer;
+    &:after{
+      background: url(/images/down-arrow-small.png) center center no-repeat;
+      width:12px;
+      height: 7px;
+      content: "";
+      position: absolute;
+      left:50%;
+      top:50%;
+      margin:-3.5px -6px;
+    }
+  }
+  &.slide-down{
+    .container {
+      transform: translate(0,100%);
+    }
+    .slide-arrows{
+      &:after{
+        transform: rotate(180deg);
+      }
+    }
+  }
 }
 .selected-item-block {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 14px 14px 0 0;
+  
   .btn {
     height: 44px;
     padding: 0 25px;
@@ -1062,7 +1106,9 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   letter-spacing: 0.5px;
-
+  .error{
+    bottom:-26px;
+  }
   .form-control {
     background: rgba(5, 5, 5, 0.1);
     border: 1px solid #ffffff;
@@ -1074,6 +1120,10 @@ body {
     color: #fff;
     font-size: 24px;
     letter-spacing: 1px;
+  }
+  select{
+    appearance: none;
+    background:url(/images/down-arrow-small.png) right 15px  center no-repeat rgba(5, 5, 5, 0.1)!important;
   }
   select option {
     color: black;
@@ -1087,34 +1137,39 @@ body {
     .col-4 {
       height: 75px;
       line-height: 75px;
-    }
-    .btn {
-      height: 44px;
-      line-height: 44px;
-      padding: 0 20px;
-      display: block;
-      width: 100%;
-      outline: 0;
-      color: #fff;
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
       cursor: pointer;
-      transition: all ease 0.5s;
-      &.btn-primary {
-        background-color: rgba($primary, 0.9);
-        border: $primary 1px solid;
-        &:hover {
-          background-color: $primary;
-        }
+    }
+  }
+  .btn {
+    height: 44px;
+    line-height: 44px;
+    padding: 0 20px;
+    display: block;
+    width: 100%;
+    outline: 0;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all ease 0.5s;
+    text-decoration: none;
+    &.backtohome{
+      max-width: 225px;
+    }
+    &.btn-primary {
+      background-color: rgba($primary, 0.9);
+      border: $primary 1px solid;
+      &:hover {
+        background-color: $primary;
       }
-      &.btn-outline-secondary {
-        background-color: transparent;
-        border: $white 1px solid;
-        &:hover {
-          color: #262626;
-          background-color: $white;
-        }
+    }
+    &.btn-outline-secondary {
+      background-color: transparent;
+      border: $white 1px solid;
+      &:hover {
+        color: #262626;
+        background-color: $white;
       }
     }
   }

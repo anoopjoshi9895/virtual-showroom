@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { ColorVariantDetails } from "../../api-service/api-models";
 import { useOnLoadImages } from "../../hooks/use-onload-images";
 import CommonSlider from "../detail/common-slider";
+import RotaionWheel from "../detail/rotation-wheel";
 import Footer from "../footer/footer";
 import CommonHeader from "../header/common-header";
 import DropdownListItems from "../header/dropdown-list-items";
@@ -13,7 +14,7 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
   const router = useRouter();
   const [fadeOut, setFadeOut] = useState(false);
   const onChangeSlide = (currentSlide: number) => {
-    // setCurrentSlide(currentSlide);
+    setCurrentSlide(currentSlide);
     setSelectedColor(colors[currentSlide]);
   };
   const data = props?.data;
@@ -24,6 +25,11 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { status: imagesLoaded, percentage } = useOnLoadImages(wrapperRef);
+  const [directionNumber, setDirectionNumber] = useState(7);
+
+  const onRotationClick = (direction: number) => {
+    setDirectionNumber(direction);
+  };
 
   return (
     <>
@@ -58,7 +64,7 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
               );
             }}
             initialSlide={0}
-            vehicles={getSliderData(colors)}
+            vehicles={getSliderData(colors, directionNumber)}
             onChangeSlide={onChangeSlide}
           />
           {/* <Footer /> */}
@@ -72,6 +78,22 @@ const ColorWraper = (props: { data: ColorVariantDetails }) => {
           percentage={percentage + 30}
         ></PercentageLoader>
       )}
+      <div className="bottom-0 left-0 position-absolute px-4 py-2 w-100 rotationwheel-block">
+        <div className="d-flex flex-wrap justify-content-between">
+          {colors?.length > 0 && (
+            <span className="slideCount">
+              <span className="current">{currentSlide + 1} </span>{" "}
+              <span className="divider mx-2"></span>{" "}
+              <span className="total">{colors?.length ?? 0}</span>
+            </span>
+          )}
+          <RotaionWheel
+            activeNumber={directionNumber}
+            onFadeOut={() => { }}
+            onClick={onRotationClick}
+          />
+        </div>
+      </div>
     </>
   );
 };

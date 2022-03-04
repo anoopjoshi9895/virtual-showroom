@@ -10,6 +10,7 @@ const HomeIcon = () => {
           viewBox="0 0 38 38"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="cursor-pointer"
         >
           <g filter="url(#filter0_b_1453_22173)">
             <rect

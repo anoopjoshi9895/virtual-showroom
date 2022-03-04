@@ -7,7 +7,7 @@ const SummaryItem = (props: {
   const data = props?.data;
   return (
     <>
-      <h6 className="font-small text-white">{data.title}</h6>
+      <h6 className="font-small text-white mb-0">{data.title}</h6>
       <ul className="font-small text-white list-unstyled font-small color-listing">
         {data.data}
       </ul>

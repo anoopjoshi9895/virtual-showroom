@@ -1,13 +1,15 @@
+import { toTitles } from "./utils";
+
 const HoverSVG = (props: { link: string; name: string; onClick: any }) => {
   return (
     <span className="hover" onClick={() => {
       props.onClick();
     }}>
       <div className="series-name">
-        <span className="d-block">{props.name}</span>
+        <span className="d-block">{toTitles(props.name)}</span>
       </div>
       <span
-        
+
         className="detailview"
       >
         <svg
