@@ -48,7 +48,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  //export const getServerSideProps: GetStaticProps = async ({ params }) => {
+  // export const getServerSideProps: GetStaticProps = async ({ params }) => {
   const carList = await getDetailsBySeries(
     params?.series?.toString(),
     params?.model?.toString()
